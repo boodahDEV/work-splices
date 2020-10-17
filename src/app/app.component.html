@@ -1,7 +1,39 @@
 <nb-layout>
+  <nb-layout-header fixed class="row">
+    <div class="header-container col-md-3">
+      <div class="logo-container">
+        <a class="logo" href="">
+          <img
+            src="../../../../assets/logo.png"
+            alt="Logo WorkSplice"
+            width="125"
+            height="70"
+        /></a>
+      </div>
+    </div>
 
-  <nb-layout-header fixed>
-  <!-- Insert header here -->
+    <div class="header-container col-md-3 offset-md-7 row">
+      <div class="col-md-4">
+        <nb-search
+          type="rotate-layout"
+          placeholder="Buscar proyectos"
+          hint="Es sencible a mayusculas y minusculas. Se minucioso :)"
+        ></nb-search>
+      </div>
+      <nb-actions size="small col-md-3">
+        <nb-action class="user-action">
+          <nb-user
+            [nbContextMenu]="items"
+            [onlyPicture]="userPictureOnly"
+            name="boodah"
+            title="Developer"
+            [picture]="user?.primary"
+            nbContextMenuTag="my-context-menu"
+          >
+          </nb-user>
+        </nb-action>
+      </nb-actions>
+    </div>
   </nb-layout-header>
 
   <nb-layout-column>
@@ -9,7 +41,13 @@
   </nb-layout-column>
 
   <nb-layout-footer fixed>
-  <!-- Insert footer here -->
+    <span class="created-by"
+      >Creado por
+      <b
+        ><a href="https://github.com/boodahDEV" target="_blank"> ADS-WORKS </a
+        ><nb-icon icon="github" size="small"></nb-icon
+      ></b>
+      2020</span
+    >
   </nb-layout-footer>
-
 </nb-layout>
