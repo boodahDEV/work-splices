@@ -3,36 +3,25 @@
     <div class="header-container col-md-3">
       <div class="logo-container">
         <a class="logo" href="">
-          <img
-            src="../../../../assets/logo.png"
-            alt="Logo WorkSplice"
-            width="125"
-            height="70"
-        /></a>
+          <img src="../../../../assets/logo.jpg" alt="Logo WorkSplice" /></a>
       </div>
     </div>
 
-    <div class="header-container col-md-3 offset-md-7 row">
-      <div class="col-md-4">
-        <nb-search
-          type="rotate-layout"
-          placeholder="Buscar proyectos"
-          hint="Es sencible a mayusculas y minusculas. Se minucioso :)"
-        ></nb-search>
+    <div class="header-container col-md-3 offset-md-7">
+      <nb-search type="rotate-layout" placeholder="Buscar proyectos"
+        hint="Es sencible a mayusculas y minusculas. Se minucioso :)"></nb-search>
+      <div class="col-md-3">
+        <nb-actions size="small">
+          <nb-action class="user-action" *ngIf="is_login">
+            <nb-user [nbContextMenu]="items" [onlyPicture]="userPictureOnly" name="boodah" title="Developer"
+              [picture]="user?.primary" nbContextMenuTag="my-context-menu">
+            </nb-user>
+          </nb-action>
+          <nb-action *ngIf="!is_login">
+            <button nbButton status="primary">Inicia sesion</button>
+          </nb-action>
+        </nb-actions>
       </div>
-      <nb-actions size="small col-md-3">
-        <nb-action class="user-action">
-          <nb-user
-            [nbContextMenu]="items"
-            [onlyPicture]="userPictureOnly"
-            name="boodah"
-            title="Developer"
-            [picture]="user?.primary"
-            nbContextMenuTag="my-context-menu"
-          >
-          </nb-user>
-        </nb-action>
-      </nb-actions>
     </div>
   </nb-layout-header>
 
@@ -41,13 +30,10 @@
   </nb-layout-column>
 
   <nb-layout-footer fixed>
-    <span class="created-by"
-      >Creado por
-      <b
-        ><a href="https://github.com/boodahDEV" target="_blank"> ADS-WORKS </a
-        ><nb-icon icon="github" size="small"></nb-icon
-      ></b>
-      2020</span
-    >
+    <span class="created-by">Creado por
+      <b><a href="https://github.com/boodahDEV" target="_blank"> ADS-WORKS </a>
+        <nb-icon icon="github" size="small"></nb-icon>
+      </b>
+      2020</span>
   </nb-layout-footer>
 </nb-layout>
