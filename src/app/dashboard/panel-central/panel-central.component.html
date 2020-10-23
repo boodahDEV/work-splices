@@ -1,88 +1,69 @@
 <ul>
   <li class="booking-card" style="
-      background-image: url(https://images.unsplash.com/photo-1578944032637-f09897c5233d?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
-    ">
+      background-color: #6eadd4;">
     <div class="book-container">
       <div class="content">
         <button nbButton class="btn">Ver más</button>
       </div>
     </div>
     <div class="informations-container">
-      <h2 class="title">Titulo del proyecto</h2>
-      <p class="sub-title">Subtitulo del proyecto. o breve descripcion.</p>
-      <br />
+      <h2 class="title">Titulo del proyectossssss-28</h2>
+      <p class="sub-title">Subtitulo del proyecto. o breve descripcion.Subtitulo del proyecto. o breve descripcion. breve d-100</p>
+      <br>
       <div class="row align-items-start">
-        <div class="col-5  align-self-end">
-          <button nbButton size="tiny" status="success">Success<nb-icon icon="star"></nb-icon></button>
-
-        </div>
-        <div class="col-2 ">
+        <div class="col align-self-center">
           <button nbButton size="large" ghost shape="round">
-            <nb-icon status="primary" icon="email-outline">
+            <nb-badge text="9+" status="info" position="top right"></nb-badge>
+            <nb-icon status="primary" nbTooltip="Recaudaciones" nbTooltipPlacement="top" icon="shopping-bag-outline">
             </nb-icon>
           </button>
         </div>
-        <div class="col-2">
+        <div class="col align-self-center">
           <button nbButton size="large" ghost shape="round">
-            <nb-icon status="primary" icon="email-outline">
+            <nb-badge text="9+" status="info" position="top right"></nb-badge>
+            <nb-icon status="primary" nbTooltip="Objetivo" nbTooltipPlacement="top" icon="trending-up-outline">
             </nb-icon>
           </button>
         </div>
-        <div class="col-2">
-          <button nbButton size="large" shape="round">
-            <nb-icon status="primary" icon="email-outline">
+        <div class="col align-self-center">
+          <button nbButton size="large" ghost shape="round">
+            <nb-badge text="9+" status="info" position="top right"></nb-badge>
+            <nb-icon status="primary" nbTooltip="Donantes" nbTooltipPlacement="top" icon="smiling-face-outline">
             </nb-icon>
           </button>
         </div>
       </div>
-      <!-- 
-      <div class="table-responsive" style="justify-content: center">
-          <table class="table">
-          <tr>
-            <th>
-              <nb-icon nbTooltip="Recaudaciones" nbTooltipPlacement="top" status="success"
-                [options]="{ animation: { type: 'zoom' } }" icon="shopping-bag-outline">
-              </nb-icon>
-            </th>
-            <th>
-              <nb-icon nbTooltip="Objetivo" nbTooltipPlacement="top" status="danger"
-                [options]="{ animation: { type: 'zoom' } }" icon="trending-up-outline"></nb-icon>
-            </th>
-            <th>
-              <nb-icon nbTooltip="Donaciones" nbTooltipPlacement="top" status="warning"
-                [options]="{ animation: { type: 'zoom' } }" icon="smiling-face-outline"></nb-icon>
-            </th>
-          </tr>
-          <tr>
-            <td>4 $</td>
-            <td>14 $</td>
-            <td>2</td>
-          </tr>
-        </table>
-      </div> -->
+      <div class="row align-items-start">
+        <div class="col align-self-center">
+          <button nbButton size="medium" status="danger">Like<nb-icon icon="heart"></nb-icon></button>
+        </div>
+        <div class="col align-self-center">
+          <button nbButton size="large" ghost status="success">Estado<nb-icon icon="flag">
+            </nb-icon></button>
+        </div>
+      </div>
+
       <div class="more-information">
         <div class="info-and-date-container">
           <div class="box info">
-            <svg class="icon" style="width: 24px; height: 24px" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
-            </svg>
-            <p>Parc des expositions à NANTES</p>
+            <p style="padding-bottom: 5px;">Quiero formar parte del equipo<nb-icon icon="flash">
+            </nb-icon></p>
+            <button nbButton size="small" status="warning">Unirme</button>
           </div>
           <div class="box date">
-            <svg class="icon" style="width: 24px; height: 24px" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" />
-            </svg>
-            <button nbButton status="success">Donar</button>
+            <p style="padding-bottom: 5px;">Deseo contribuir al proyecto<nb-icon icon="heart">
+            </nb-icon></p>
+            <button nbButton size="small" status="success">Donar</button>
           </div>
         </div>
         <p class="disclaimer">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi
-          eveniet perferendis culpa. Expedita architecto nesciunt, rem
-          distinctio
+          <nb-icon icon="alert-circle"></nb-icon>
+            Recuerda leer los terminos correspondiente con respecto a los proyectos y los limites al unirse.
         </p>
       </div>
     </div>
   </li>
 </ul>
+
+<!--      # Para formar parte del equipo el organizador de dicho proyecto debe aceptar tu solicitud.
+          # El estudiante solo puede estar en 2 proyectos "activos" o "en curso" al mismo tiempo. Si el proyecto a unirse no este en uno de los estado previamente mencionados, su solicitud sera enviada  -->

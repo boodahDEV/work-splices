@@ -7,10 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbIconModule, NbActionsModule, NbSearchModule, NbUserModule, NbContextMenuModule, NbMenuModule, NbButtonModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ViewUserComponent } from './view-user/view-user.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ViewUserComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
