@@ -9,6 +9,11 @@ const routes: Routes = [
     component: DashboardComponent,
     pathMatch: 'full',
     data:{}
+  },
+  {
+    path: 'authentication',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    
   }
 ];
 

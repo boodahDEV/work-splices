@@ -1,28 +1,50 @@
 <nb-layout>
-  <nb-layout-header fixed class="row">
-    <div class="header-container col-md-3">
+  <nb-layout-header fixed>
+    <div class="col-2">
       <div class="logo-container">
         <a class="logo" href="">
           <img src="../../../../assets/logo.jpg" alt="Logo WorkSplice" /></a>
+        </div>
       </div>
-    </div>
+    <div class="col-8">
 
-    <div class="header-container col-md-3 offset-md-7">
-      <nb-search type="rotate-layout" placeholder="Buscar proyectos"
-        hint="Es sencible a mayusculas y minusculas. Se minucioso :)"></nb-search>
-      <div class="col-md-3">
-        <nb-actions size="small">
-          <nb-action class="user-action" *ngIf="is_login">
-            <nb-user [nbContextMenu]="items" [onlyPicture]="userPictureOnly" name="boodah" title="Developer"
-              [picture]="user?.primary" nbContextMenuTag="my-context-menu">
-            </nb-user>
-          </nb-action>
-          <nb-action *ngIf="!is_login">
-            <button nbButton status="primary">Inicia sesion</button>
-          </nb-action>
-        </nb-actions>
-      </div>
     </div>
+    <div class="col-2">
+      <nb-actions size="small">
+        <nb-action class="user-action" *ngIf="is_login">
+          <nb-user [nbContextMenu]="items" [onlyPicture]="userPictureOnly" name="boodah" title="Developer"
+            [picture]="user?.primary" nbContextMenuTag="my-context-menu">
+          </nb-user>
+        </nb-action>
+        <nb-action *ngIf="!is_login">
+          <button nbButton status="primary">Inicia sesion</button>
+        </nb-action>
+      </nb-actions>    </div>
+    <!-- <div class="header-container col-md-3">
+      <div class="logo-container">
+        <a class="logo" href="">
+          <img src="../../../../assets/logo.jpg" alt="Logo WorkSplice" /></a>
+        </div>
+        <div class="col-md-3">
+          <button nbButton size="large" >Test</button>
+        </div>
+      </div>
+    <div class="header-container col-md-3 offset-md-7">
+    <nb-search type="rotate-layout" placeholder="Buscar proyectos"
+      hint="Es sencible a mayusculas y minusculas. Se minucioso :)"></nb-search>
+    <div class="col-md-3">
+      <nb-actions size="small">
+        <nb-action class="user-action" *ngIf="is_login">
+          <nb-user [nbContextMenu]="items" [onlyPicture]="userPictureOnly" name="boodah" title="Developer"
+            [picture]="user?.primary" nbContextMenuTag="my-context-menu">
+          </nb-user>
+        </nb-action>
+        <nb-action *ngIf="!is_login">
+          <button nbButton status="primary">Inicia sesion</button>
+        </nb-action>
+      </nb-actions>
+    </div>
+  </div> -->
   </nb-layout-header>
 
   <nb-layout-column>
