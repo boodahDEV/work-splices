@@ -1,25 +1,22 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  userPictureOnly: boolean = false;
-  user: any;
-  uid: string
-  items = [
-    { title: 'Configurar', icon: 'settings-2-outline' },
-    { title: 'Salir', icon: 'log-out-outline', },
-  ];
+export class AppComponent implements OnInit {
+  title = 'CASPER - SUPPORT & CONSULTATION';
 
-  title = 'work-splice';
-  is_login:boolean;
-  constructor() {
-    if(!sessionStorage.getItem("token-s"))
-      this.is_login = false
-    else
-      this.is_login = true
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 }

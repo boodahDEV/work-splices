@@ -1,30 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbIconModule, NbActionsModule, NbSearchModule, NbUserModule, NbContextMenuModule, NbMenuModule, NbButtonModule } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { DashboardModule } from './dashboard/dashboard.module';
-import { ViewUserComponent } from './view-user/view-user.component';
-import { AuthModule } from './auth/auth.module';
+import { AdminComponent } from './layout/admin/admin.component';
+import { BreadcrumbsComponent } from './layout/admin/breadcrumbs/breadcrumbs.component';
+import { TitleComponent } from './layout/admin/title/title.component';
+import { AuthComponent } from './layout/auth/auth.component';
+import {SharedModule} from './shared/shared.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NotificacionesComponent } from './layout/admin/notificaciones/notificaciones.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NbButtonModule, NbLayoutModule, NbThemeModule} from '@nebular/theme';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ViewUserComponent,
+    AdminComponent,
+    BreadcrumbsComponent,
+    TitleComponent,
+    AuthComponent,
+    NotificacionesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    AuthModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'default' }),
-    NbLayoutModule,NbActionsModule,NbSearchModule, NbUserModule,
-    DashboardModule,NbContextMenuModule,  NbMenuModule.forRoot(),
-    NbIconModule, NbButtonModule,
-    NbEvaIconsModule
+    AppRoutingModule,
+    SharedModule,
+    NbThemeModule.forRoot({name: 'default'}),
+    NbButtonModule,
+    NbLayoutModule
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
 })

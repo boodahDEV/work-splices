@@ -1,3 +1,9 @@
-# WorkSplice
+# YEKSPLICES
+### A medida que avanza el desarrollo este documento se ira detallando aun mas.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
+```diff
+# Version actual: 0.0.1 --> Se inicia el proyecto e instancias los simientos de la GUI.
+
+# Las solicitudes de extracción y aportes al desarrollo son bienvenidas.
+# boodah :)
+```
