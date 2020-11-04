@@ -56,35 +56,35 @@
                 </a>
               </li> -->
               
-              <li class="user-profile header-notification" *ngIf="info_user">
-                <a >
+              <li class="user-profile header-notification" *ngIf="!info_user">
+                <a style="text-decoration: none;">
                   <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                   <span>John Doe</span>
                   <i class="ti-angle-down"></i>
                 </a>
                 <ul class="show-notification profile-notification">
                   <li>
-                    <a style="cursor:pointer;" [routerLink]="['/user/profile']">
+                    <a style="cursor:pointer; text-decoration: none;" [routerLink]="['/user/profile']">
                       <i class="ti-user"></i> Mi perfil
                     </a>
                   </li>
                   <li>
-                    <a style="cursor:pointer;" (click)="TestConnectToAPI()">
+                    <a style="cursor:pointer; text-decoration: none;" (click)="TestConnectToAPI()">
                       <i class="ti-light-bulb"></i> Mis consultas
                     </a>  
                   </li>
                   <li>
-                    <a style="cursor:pointer;" [routerLink]="['/authentication/lock-screen']" target="_blank">
+                    <a style="cursor:pointer; text-decoration: none;" [routerLink]="['/authentication/lock-screen']" target="_blank">
                       <i class="ti-credit-card"></i> Mis planes de pago
                     </a>
                   </li>
                   <li>
-                    <a style="cursor:pointer;" [routerLink]="['/crm-contact']">
+                    <a style="cursor:pointer; text-decoration: none;" [routerLink]="['/crm-contact']">
                      <i class="ti-settings"></i> Configuraciones
                     </a>
                   </li>
                   <li>
-                    <a style="cursor:pointer;" [routerLink]="['/authentication/login/with-bg-image']">
+                    <a style="cursor:pointer; text-decoration: none;" [routerLink]="['/authentication/login/with-bg-image']">
                       <i class="ti-close"></i> Salir
                     </a>
                   </li>
@@ -92,7 +92,7 @@
               </li>
 
               
-              <li class="user-profile header-notification" *ngIf="!info_user">
+              <li class="user-profile header-notification" *ngIf="info_user">
                 <button [routerLink]="['/authentication/login']" class="btn bg-c-default btn-outline-warning btn-round" style="color: black;">Iniciar session</button>
               </li>
 

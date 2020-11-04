@@ -12,7 +12,12 @@ import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NotificacionesComponent } from './layout/admin/notificaciones/notificaciones.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NbButtonModule, NbLayoutModule, NbThemeModule} from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule, NbSelectModule, NbThemeModule, NbUserModule} from '@nebular/theme';
+import { BasicProjectViewComponent } from './pages/basic-project-view/basic-project-view.component';
+import { BasicProjectCommentComponent } from './pages/basic-project-comment/basic-project-comment.component';
+import { BasicUnirmeComponent } from './pages/basic-unirme/basic-unirme.component';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { BasicDonateComponent } from './pages/basic-donate/basic-donate.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,11 @@ import { NbButtonModule, NbLayoutModule, NbThemeModule} from '@nebular/theme';
     BreadcrumbsComponent,
     TitleComponent,
     AuthComponent,
-    NotificacionesComponent
+    NotificacionesComponent,
+    BasicProjectViewComponent,
+    BasicProjectCommentComponent,
+    BasicUnirmeComponent,
+    BasicDonateComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +40,15 @@ import { NbButtonModule, NbLayoutModule, NbThemeModule} from '@nebular/theme';
     SharedModule,
     NbThemeModule.forRoot({name: 'default'}),
     NbButtonModule,
+    NbCardModule,
+    NbIconModule,
+    NbDialogModule.forRoot(),
+    NbListModule,
+    NbUserModule,
+    NbInputModule,
+    // NbEvaIconsModule,
+    NbFormFieldModule,
+    NbSelectModule,
     NbLayoutModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],

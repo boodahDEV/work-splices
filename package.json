@@ -41,6 +41,7 @@
     "rxjs": "^6.5.2",
     "rxjs-compat": "^6.0.0-rc.0",
     "screenfull": "^3.3.2",
+    "sweetalert2": "^10.9.0",
     "ti-icons": "^0.1.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

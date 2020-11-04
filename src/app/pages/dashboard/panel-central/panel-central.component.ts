@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+import { BasicProjectViewComponent } from '../../basic-project-view/basic-project-view.component';
 
 @Component({
   selector: 'app-panel-central',
@@ -13,7 +15,9 @@ export class PanelCentralComponent implements OnInit {
   title: String;
   descripcion = ['', '', ''] // maximo de 32 caracteres (evaluar funcionalidad)
 
-  constructor() {
+  constructor(
+    private dialogService: NbDialogService
+  ) {
     this.color_icon = "lite-green";
     this.color_title = "lite-green";
     this.icon_principal = "military";
@@ -26,6 +30,13 @@ export class PanelCentralComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  openProject(){
+    this.dialogService.open(BasicProjectViewComponent, {closeOnBackdropClick:false,closeOnEsc:false})
+    .onClose.subscribe(()=>{
+      console.log("Open")
+    });
   }
 
 }
