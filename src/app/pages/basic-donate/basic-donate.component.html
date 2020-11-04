@@ -1,0 +1,103 @@
+<div class="col-md-12 col-xl-12">
+    <div class="card card-contact-box ">
+        <div class="card-block ">
+            <div class="card-contain text-center ">
+                <h4 class="f-w-600 f-20 p-b-5 m-0 p-t-15 ">Esto es una prueba 21</h4><br>
+
+                <div *ngIf="type_donate == 'empresarial'">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="assets/images/unnamed.jpg" alt=" "><br><br>
+                        </div>
+                        <div class="col-md-8">
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="person-outline"></nb-icon>
+                                <input nbInput type="text" placeholder="Nombre completo" name="name" id="name">
+                            </nb-form-field>
+                            <br>
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="archive-outline"></nb-icon>
+                                <input nbInput type="text" placeholder="RUC" name="ruc" id="ruc">
+                            </nb-form-field>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="person-outline"></nb-icon>
+                                <input nbInput type="text" placeholder="Persona contacto" name="contacto" id="contacto">
+                            </nb-form-field>
+                            <br>
+                        </div>
+                        <div class="col-md-6">
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="phone-outline"></nb-icon>
+                                <input nbInput type="text" placeholder="Telefono" name="telefono" id="telefono">
+                            </nb-form-field>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <nb-form-field>
+                                <nb-icon nbPrefix icon="at-outline"></nb-icon>
+                                <input nbInput type="email" fullWidth placeholder="Correo" name="email" id="email">
+                            </nb-form-field>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anonimo, estudiantes -->
+                <div *ngIf="type_donate == 'estudiante' || type_donate == 'anonimo'">
+                    <img src="assets/images/unnamed.jpg" alt=" "><br><br>
+                    <nb-form-field>
+                        <nb-icon nbPrefix icon="person-outline"></nb-icon>
+                        <input nbInput type="text" placeholder="Nombre completo" name="name" id="name">
+                    </nb-form-field>
+                    <br>
+                    <nb-form-field>
+                        <nb-icon nbPrefix icon="at-outline"></nb-icon>
+                        <input nbInput type="email" placeholder="Correo" name="email" id="email">
+                    </nb-form-field>
+                    <br>
+                </div>
+                <div *ngIf="type_donate == 'estudiante'">
+                    <nb-form-field>
+                        <nb-icon nbPrefix icon="credit-card-outline"></nb-icon>
+                        <input nbInput type="text" placeholder="CIP" name="cip" id="cip">
+                    </nb-form-field>
+                    <br>
+                </div>
+                <!-- Anonimo, estudiantes -->
+
+                <p class="text-muted p-b-25 m-0 p-t-5 ">
+                    <nb-select filled  status="primary" placeholder="Tipo donante " required (selectedChange)="get_type($event)"
+                        [(selected)]="selectedItem">
+                        <nb-option value="estudiante">Estudiante</nb-option>
+                        <nb-option value="anonimo">Anonimo</nb-option>
+                        <nb-option value="empresarial">Empresarial</nb-option>
+                        <nb-option> -- </nb-option>
+                    </nb-select>
+                </p>
+            </div>
+        </div>
+        <div class="b-t-default">
+            <div class="row m-0">
+                <div class="col-6 p-t-15 p-b-15 ">
+                    <span class="text-muted" style="font-size: 18px;">
+                        Monto:
+                    </span>
+                    <input nbInput type="text" name="monto" id="monto" size="2" placeholder="$" style="height: 28px;">
+                </div>
+                <div class="col-6 f-btn text-center p-t-15 p-b-15 ">
+                    <a href="javascript:" (click)="setDonate()">
+                        <i class="icofont icofont-money-bag text-muted m-r-10 "></i>
+                        <p class="text-muted m-0 text-uppercase d-inline-block ">Donar</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
