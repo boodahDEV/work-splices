@@ -1,0 +1,124 @@
+<div class="row justify-content-center">
+    <div class="col-md-6 col-xl-6 align-self-center">
+        <div class="card widget-statstic-card">
+            <div class="card-header">
+                <div class="card-header-left">
+                    <h3>Titulo del proyecto de forma extensa</h3>
+                    <!-- <p class="p-t-10 m-b-0 text-c-pink">55% from last 28 hours</p> -->
+                </div>
+            </div>
+            <div class="card-block">
+                <i class="icofont icofont-users-social st-icon bg-c-pink txt-lite-color"></i>
+                <div class="row">
+                    <div class="col-md-8">
+                        <nb-card>
+                            <nb-card-body>
+                                <div class="row">
+                                    <p style="text-align: left;">
+                                        Get 15% Off on licences. Use code "codedthemes" and get the discount. Get 15%
+                                        Off on
+                                        licences. Use code "codedthemes" and get the discount. Get 15% Off on licences.
+                                        Use
+                                        code "codedthemes" and get the discount. Get 15% Off on licences. Use
+                                        code"codedthemes" and get the discount.
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-xl-12">
+                                        <app-card [title]="'Comentarios'">
+                                            <div class="row">
+                                                <app-basic-project-comment></app-basic-project-comment>
+                                            </div><br>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <input type="text" nbInput fullWidth fieldSize="medium"
+                                                        placeholder="Input">
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <nb-select filled status="info" placeholder="Etiquetas "
+                                                                [(selected)]="selectedItem">
+                                                                <nb-option value="error">Error</nb-option>
+                                                                <nb-option value="pregunta">Pregunta</nb-option>
+                                                                <nb-option value="sugestivo">Sugestivo</nb-option>
+                                                                <nb-option>Etiquetas</nb-option>
+                                                            </nb-select>
+                                                        </div>
+                                                        <div class="col-3"></div>
+                                                        <div class="col-4 align-self-center">
+                                                            <button nbButton size="small" status="info">Enviar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </app-card>
+
+                                    </div>
+                                </div>
+                            </nb-card-body>
+                        </nb-card>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <nb-card>
+                                <nb-card-header class="row">
+                                    <div class="col-7 align-self-center">
+                                        <h6 style="text-align: center;">Integrantes</h6>
+                                    </div>
+                                    <div class="col-5">
+                                        <button nbButton size="medium" status="primary" (click)="openUnirme()">Unirme</button>
+                                    </div>
+                                </nb-card-header>
+                                <nb-card-body>
+                                    <nb-list>
+                                        <nb-list-item *ngFor="let user of users">
+                                            <nb-user style="cursor: pointer" size="medium" [name]="user.name"
+                                                [showTitle]="false" shape="semi-round"></nb-user>
+                                        </nb-list-item>
+                                    </nb-list>
+                                </nb-card-body>
+                            </nb-card>
+                        </div>
+                        <div class="row">
+                            <nb-card>
+                                <nb-card-header class="row">
+                                    <div class="col-7 align-self-center">
+                                        <h6 style="text-align: center;">Objetivos</h6>
+                                    </div>
+                                    <div class="col-5">
+                                        <button nbButton size="medium" status="primary" (click)="openDonar()">Donar</button>
+                                    </div>
+                                </nb-card-header>
+                                <nb-card-body>
+                                    <div class="browser-card p-b-15 ">
+                                        <p class="d-inline-block m-0 ">Meta</p>
+                                        <button class="btn bg-c-blue btn-round float-right btn-browser ">500 $</button>
+                                    </div>
+                                    <div class="browser-card p-b-15 ">
+                                        <p class="d-inline-block m-0 ">Recaudado</p>
+                                        <button class="btn bg-c-blue btn-round float-right btn-browser ">10 $</button>
+                                    </div>
+                                    <div class="browser-card p-b-15 ">
+                                        <p class="d-inline-block m-0 ">Total donaciones</p>
+                                        <button class="btn bg-c-blue btn-round float-right btn-browser ">2 </button>
+                                    </div>
+                                </nb-card-body>
+                            </nb-card>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <br>   
+                    <div class="col-1 align-self-center">
+                        <button class="btn bg-c-pink btn-round float-right btn-browser" style="color: white; font-weight: bold;">Like</button>
+                    </div>
+                    <div class="col-2">
+                        <button nbButton size="giant" status="control" (click)="exit_dialog()">Atras</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
