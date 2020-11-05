@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { OffialLoginComponent } from './login/offial-login/offial-login.component';
+import { BasicRegComponent } from './registration/basic-reg/basic-reg.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'register',
-        loadChildren: () => import('./registration/basic-reg/basic-reg.module').then(m => m.BasicRegModule)
+        component:BasicRegComponent
       }
     ]
   }

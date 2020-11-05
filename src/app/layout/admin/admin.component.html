@@ -56,7 +56,7 @@
                 </a>
               </li> -->
               
-              <li class="user-profile header-notification" *ngIf="!info_user">
+              <li class="user-profile header-notification" *ngIf="info_user">
                 <a style="text-decoration: none;">
                   <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                   <span>John Doe</span>
@@ -92,8 +92,8 @@
               </li>
 
               
-              <li class="user-profile header-notification" *ngIf="info_user">
-                <button [routerLink]="['/authentication/login']" class="btn bg-c-default btn-outline-warning btn-round" style="color: black;">Iniciar session</button>
+              <li class="user-profile header-notification" *ngIf="!info_user">
+                <button [routerLink]="['/authentication/login']" class="btn bg-c-default btn-outline-info btn-round" style="color: black;">Iniciar session</button>
               </li>
 
 

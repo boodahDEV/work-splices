@@ -1,81 +1,242 @@
-<section class="login p-fixed d-flex text-center bg-primary common-img-bg">
-  <!-- starts -->
-  <div class="auth-fluid">
-    <div class="row">
-      <div class="col-sm-12">
-        <!-- Authentication card start -->
-        <div class="login-card card-body auth-body">
-          <form class="md-float-material">
-            <div class="text-center">
-              <img src="assets/images/auth/logo-dark.png" alt="Guru Able">
-            </div>
-            <div class="auth-box">
-              <div class="row m-b-20">
-                <div class="col-md-12">
-                  <h3 class="text-center txt-primary">Sign up. It is fast and easy.</h3>
-                </div>
-              </div>
-              <hr/>
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Choose Username">
-                <span class="md-line"></span>
-              </div>
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Your Email Address">
-                <span class="md-line"></span>
-              </div>
-              <div class="input-group">
-                <input type="password" class="form-control" placeholder="Choose Password">
-                <span class="md-line"></span>
-              </div>
-              <div class="input-group">
-                <input type="password" class="form-control" placeholder="Confirm Password">
-                <span class="md-line"></span>
-              </div>
-              <div class="row m-t-25 text-left">
-                <div class="col-md-12">
-                  <div class="checkbox-fade fade-in-primary">
-                    <label>
-                      <input type="checkbox" value="">
-                      <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                      <span class="text-inverse">I read and accept <a href="javascript:;">Terms &amp; Conditions.</a></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="checkbox-fade fade-in-primary">
-                    <label>
-                      <input type="checkbox" value="">
-                      <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                      <span class="text-inverse">Send me the <a href="javascript:;">Newsletter</a> weekly.</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="row m-t-30">
-                <div class="col-md-12">
-                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign up now.</button>
-                </div>
-              </div>
-              <hr/>
-              <div class="row">
-                <div class="col-md-10">
-                  <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
-                  <p class="text-inverse text-left"><b>Your Autentification Team</b></p>
-                </div>
-                <div class="col-md-2">
-                  <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
-                </div>
-              </div>
-            </div>
-          </form>
-          <!-- end of form -->
-        </div>
-        <!-- Authentication card end -->
+<br>
+<br>
+<br>
+<div class="row justify-content-center">
+  <nb-card style="border-radius: 5%;">
+    <nb-card-body>
+      <br>
+      <img src="./../../../../../assets/images/logo_icon.jpg" width="" class="center" />
+      <div class="row col-md-12 justify-content-center">
+        <h1 id="title" class="title" style="text-align: center;">Registrate</h1>
+        <!-- <p class="sub-title">
+          ¡Hola! y bienvenido, es importante tu correo institucional en el registro
+        </p> -->
       </div>
-      <!-- end of col-sm-12 -->
-    </div>
-    <!-- end of row -->
-  </div>
-  <!-- end of -->
-</section>
+      <div class="row col-md-12 justify-content-center">
+        <p class="sub-title">
+          ¡Hola! y bienvenido, es importante tu correo institucional en el registro
+        </p>
+      </div>
+      <br>
+      <div class="row justify-content-center">
+        <div class="col-md-10 align-self-center">
+          <form (ngSubmit)="register()" #form="ngForm" aria-labelledby="title">
+            <div class="row">
+              <!-- IZQUIERDA -->
+              <div class="col-6">
+                <div class="row">
+
+                  <div class="col-6">
+                    <div class="form-control-group">
+                      <input nbInput fullWidth [(ngModel)]="user.name" #name="ngModel" name="name" type="text" nbInput
+                        id="input-name" shape="semi-round" placeholder="Nombre" fieldSize="large"
+                        [status]="name.dirty ? (name.invalid  ? 'danger' : 'success') : ''" [required]=true
+                        [attr.aria-invalid]="name.invalid && name.touched ? true : null">
+
+                      <ng-container *ngIf="name.invalid && name.touched ">
+                        <p class="caption status-danger" *ngIf="name.errors?.required">
+                          ¡Tu nombre es requerido!
+                        </p>
+                      </ng-container>
+
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-control-group">
+                      <input nbInput fullWidth [(ngModel)]="user.lastname" #lastname="ngModel" name="lastname"
+                        type="text" nbInput id="input-lastname" shape="semi-round" placeholder="Apellido"
+                        fieldSize="large" [status]="lastname.dirty ? (lastname.invalid  ? 'danger' : 'success') : ''"
+                        [required]=true [attr.aria-invalid]="lastname.invalid && lastname.touched ? true : null">
+
+                      <ng-container *ngIf="lastname.invalid && lastname.touched ">
+                        <p class="caption status-danger" *ngIf="lastname.errors?.required">
+                          ¡Tu apellido es requerido!
+                        </p>
+                      </ng-container>
+
+                    </div>
+                  </div>
+
+
+                </div>
+                <br>
+                <div class="row">
+
+                  <div class="col-7">
+                    <div class="form-control-group">
+                      <input nbInput fullWidth [(ngModel)]="user.CIP" #CIP="ngModel" name="CIP" type="text" nbInput
+                        id="input-CIP" shape="semi-round" placeholder="Cedula" fieldSize="large"
+                        pattern="([0-9])\d-(a?\w|([0-0])\d)-([0-9])\d([0-9])\d-a?\d([0-9])\d([0-9])\d$"
+                        [status]="CIP.dirty ? (CIP.invalid  ? 'danger' : 'success') : ''" [required]=true
+                        [attr.aria-invalid]="CIP.invalid && CIP.touched ? true : null">
+
+                      <ng-container *ngIf="CIP.invalid && CIP.touched ">
+                        <p class="caption status-danger" *ngIf="CIP.errors?.required">
+                          ¡Se requiere su cedula de identidad personal!
+                        </p>
+                        <p class="caption status-danger" *ngIf="CIP.errors?.pattern">
+                          La cedula debe tener el siguiente formato: <br> 08-00-1234-12345 , 00-PE-1234-12345
+                        </p>
+                      </ng-container>
+
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="form-control-group">
+                      <nb-select filled status="control" shape="semi-round" size="large" placeholder="Nacionalidad: "
+                        required (selectedChange)="get_nacionalidad($event)" [(selected)]="selectedItem">
+                        <nb-option value="panameña">Panameña</nb-option>
+                        <nb-option value="extranjera">Extranjera</nb-option>
+                        <nb-option> -- </nb-option>
+                      </nb-select>
+                    </div>
+                  </div>
+
+
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-control-group">
+                      <input nbInput fullWidth [(ngModel)]="user.email" #email="ngModel" name="email" id="input-email"
+                        shape="semi-round" pattern=".+@up\.ac\.pa$" placeholder="Ingresa tu correo" fieldSize="large"
+                        autofocus [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''" [required]=true
+                        type=email [attr.aria-invalid]="email.invalid && email.touched ? true : null">
+                      <ng-container *ngIf="email.invalid && email.touched">
+                        <p class="caption status-danger" *ngIf="email.errors?.required">
+                          ¡Correo electronico es requerido!
+                        </p>
+                        <p class="caption status-danger" *ngIf="email.errors?.pattern">
+                          ¡El correo electrónico debe ser el institucional!
+                        </p>
+                      </ng-container>
+
+                    </div>
+                  </div>
+
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-7">
+                    <div class="form-control-group">
+                      <input nbInput status="success" fullWidth [(ngModel)]="user.uid" #uid="ngModel" name="uid"
+                        id="input-uid" shape="semi-round" fieldSize="large" disabled="true" type=text>
+
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <div class="form-control-group">
+                      <input nbInput status="success" fullWidth [(ngModel)]="user.fecha_creacion"
+                        #fecha_creacion="ngModel" name="fecha_creacion" id="input-fecha_creacion" shape="semi-round"
+                        fieldSize="large" disabled="true" type=text>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- IZQUIERDA -->
+
+              <!-- DERECHA -->
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-3">
+                    <div class="form-control-group">
+                      <input nbInput fullWidth [(ngModel)]="user.year_course" #year_course="ngModel" name="year_course"
+                        type="text" nbInput id="input-year_course" shape="semi-round" placeholder="Año "
+                        fieldSize="large" [minlength]=4 [maxlength]=4
+                        [status]="year_course.dirty ? (year_course.invalid  ? 'danger' : 'success') : ''"
+                        [required]=true [attr.aria-invalid]="year_course .invalid && year_course.touched ? true : null">
+                    </div>
+                  </div>
+                  <div class="col-9">
+                    <div class="form-control-group">
+                      <input nbInput fullWidth [(ngModel)]="user.carrera" #carrera="ngModel" name="carrera" type="text"
+                        nbInput id="input-carrera" shape="semi-round" placeholder="Carrera" fieldSize="large"
+                        [status]="carrera.dirty ? (carrera.invalid  ? 'danger' : 'success') : ''" [required]=true
+                        [attr.aria-invalid]="carrera.invalid && carrera.touched ? true : null">
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-control-group">
+                      <nb-select filled fullwidth status="control" shape="semi-round" size="large"
+                        placeholder="Selecciona la facultad donde estudias: " required
+                        (selectedChange)="get_facultad($event)" [(selected)]="selectedItem2">
+                        <nb-option value="1">Facultad de informatica electronica y comunicaciones</nb-option>
+                        <nb-option value="2">Facultad xxxx</nb-option>
+                        <nb-option> -- </nb-option>
+                      </nb-select>
+                    </div>
+                  </div>
+
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-control-group">
+                      <input nbInput fullWidth [(ngModel)]="user.indice" #indice="ngModel" name="indice" type="text"
+                        nbInput id="input-indice" shape="semi-round" placeholder="Indice " fieldSize="large"
+                        pattern="[2]+.[0-9]+$" [status]="indice.dirty ? (indice.invalid  ? 'danger' : 'success') : ''"
+                        [minlength]=4 [maxlength]=4 [required]=true
+                        [attr.aria-invalid]="indice.invalid && indice.touched ? true : null">
+
+                      <ng-container *ngIf="indice.invalid && indice.touched ">
+                        <p class="caption status-danger" *ngIf="indice.errors?.required">
+                          ¡Se requiere el indice academico.
+                        </p>
+                        <p class="caption status-danger" *ngIf="indice.errors?.minlength || indice.errors?.maxlength">
+                          El indice academico sigue el siguiente patron: 2.10 , 2.89 , 3.00
+                        </p>
+                      </ng-container>
+
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <div class="form-control-group">
+                      <input nbInput fullWidth [(ngModel)]="user.num_recibo" #num_recibo="ngModel" name="num_recibo"
+                        type="text" nbInput id="input-num_recibo" shape="semi-round" placeholder="# Recibo"
+                        fieldSize="large"
+                        [status]="num_recibo.dirty ? (num_recibo.invalid  ? 'danger' : 'success') : ''" [minlength]=6
+                        [maxlength]=7 [required]=true
+                        [attr.aria-invalid]="num_recibo.invalid && num_recibo.touched ? true : null">
+
+                      <ng-container *ngIf="num_recibo.invalid && num_recibo.touched ">
+                        <p class="caption status-danger" *ngIf="num_recibo.errors?.required">
+                          ¡Se requiere el # del recibo de matricula del semestre vigente!
+                        </p>
+                        <p class="caption status-danger"
+                          *ngIf="num_recibo.errors?.minlength || num_recibo.errors?.maxlength">
+                          El # de recibo no es valido, favor de verificar la cantidad de caracteres.
+                        </p>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <br>
+              </div>
+              <!-- DERECHA -->
+            </div>
+
+            <br>
+            <div class="row justify-content-center">
+              <button nbButton status="success" shape="semi-round" size="large" [disabled]="submitted || !form.valid"
+                [class.btn-pulse]="submitted">
+                Registrarme </button>
+            </div>
+
+          </form>
+          <br>
+          <section class="another-action" aria-label="Register">
+            ¿Ya tienes una cuenta? <a class="text-link" style="cursor: pointer"
+              routerLink="/authentication/login">Inicia session</a>
+          </section>
+          <br><br>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+
+</div>

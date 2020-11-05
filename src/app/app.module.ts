@@ -16,7 +16,6 @@ import { NbButtonModule, NbCardModule, NbDialogModule, NbFormFieldModule, NbIcon
 import { BasicProjectViewComponent } from './pages/basic-project-view/basic-project-view.component';
 import { BasicProjectCommentComponent } from './pages/basic-project-comment/basic-project-comment.component';
 import { BasicUnirmeComponent } from './pages/basic-unirme/basic-unirme.component';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { BasicDonateComponent } from './pages/basic-donate/basic-donate.component';
 
 @NgModule({

@@ -3,7 +3,7 @@
         <div class="card-block ">
             <div class="card-contain text-center ">
                 <h4 class="f-w-600 f-20 p-b-5 m-0 p-t-15 ">Esto es una prueba 21</h4><br>
-
+                <!-- empresarial -->
                 <div *ngIf="type_donate == 'empresarial'">
                     <div class="row">
                         <div class="col-md-4">
@@ -48,6 +48,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- empresarial -->
 
                 <!-- Anonimo, estudiantes -->
                 <div *ngIf="type_donate == 'estudiante' || type_donate == 'anonimo'">
@@ -89,7 +90,7 @@
                     <span class="text-muted" style="font-size: 18px;">
                         Monto:
                     </span>
-                    <input nbInput type="text" name="monto" id="monto" size="2" placeholder="$" style="height: 28px;">
+                    <input nbInput type="text" status="primary" name="monto" id="monto" size="2" placeholder="$" style="height: 28px;">
                 </div>
                 <div class="col-6 f-btn text-center p-t-15 p-b-15 ">
                     <a href="javascript:" (click)="setDonate()">
