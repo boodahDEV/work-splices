@@ -1,6 +1,5 @@
 <br>
 <br>
-<br>
 <div class="row justify-content-center">
   <nb-card style="border-radius: 5%;">
     <nb-card-body>
@@ -100,14 +99,14 @@
                     <div class="form-control-group">
                       <input nbInput fullWidth [(ngModel)]="user.email" #email="ngModel" name="email" id="input-email"
                         shape="semi-round" pattern=".+@up\.ac\.pa$" placeholder="Ingresa tu correo" fieldSize="large"
-                        autofocus [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''" [required]=true
+                         [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''" [required]=true
                         type=email [attr.aria-invalid]="email.invalid && email.touched ? true : null">
                       <ng-container *ngIf="email.invalid && email.touched">
                         <p class="caption status-danger" *ngIf="email.errors?.required">
                           ¡Correo electronico es requerido!
                         </p>
                         <p class="caption status-danger" *ngIf="email.errors?.pattern">
-                          ¡El correo electrónico debe ser el institucional!
+                          ¡El correo electrónico debe ser el institucional up.ac.pa!
                         </p>
                       </ng-container>
 
@@ -117,18 +116,22 @@
                 </div>
                 <br>
                 <div class="row">
-                  <div class="col-7">
+                  <div class="col-6">
                     <div class="form-control-group">
-                      <input nbInput status="success" fullWidth [(ngModel)]="user.uid" #uid="ngModel" name="uid"
-                        id="input-uid" shape="semi-round" fieldSize="large" disabled="true" type=text>
+                      <input nbInput status="success" fullWidth [(ngModel)]="fecha_view" #fecha="ngModel" name="fecha"
+                        id="input-fecha" shape="semi-round" fieldSize="large" disabled="true" type="text">
 
                     </div>
                   </div>
-                  <div class="col-5">
+                  <div class="col-6">
                     <div class="form-control-group">
-                      <input nbInput status="success" fullWidth [(ngModel)]="user.fecha_creacion"
-                        #fecha_creacion="ngModel" name="fecha_creacion" id="input-fecha_creacion" shape="semi-round"
-                        fieldSize="large" disabled="true" type=text>
+                      <nb-select filled status="control" shape="semi-round" size="large"
+                        placeholder="Opciones de acceso: " required (selectedChange)="generate_password($event)"
+                        [(selected)]="selectedItem3">
+                        <nb-option value="generar">Generar contraseña:</nb-option>
+                        <nb-option value="crear">Crear mi contraseña:</nb-option>
+                        <nb-option> -- </nb-option>
+                      </nb-select>
 
                     </div>
                   </div>
@@ -143,16 +146,22 @@
                   <div class="col-3">
                     <div class="form-control-group">
                       <input nbInput fullWidth [(ngModel)]="user.year_course" #year_course="ngModel" name="year_course"
-                        type="text" nbInput id="input-year_course" shape="semi-round" placeholder="Año "
-                        fieldSize="large" [minlength]=4 [maxlength]=4
+                        type="text" id="input-year_course" shape="semi-round" placeholder="Año "
+                        fieldSize="large" [minlength]=4 [maxlength]=4 pattern="[0-9]\d[0-9]\d$"
                         [status]="year_course.dirty ? (year_course.invalid  ? 'danger' : 'success') : ''"
-                        [required]=true [attr.aria-invalid]="year_course .invalid && year_course.touched ? true : null">
+                        [required]=true [attr.aria-invalid]="year_course.invalid && year_course.touched ? true : null">
+                      <ng-container *ngIf="year_course.invalid && year_course.touched ">
+                        <p class="caption status-danger"
+                          *ngIf="year_course.errors?.required || year_course.errors?.pattern">
+                          ¡Se requiere el año de ingreso!
+                        </p>
+                      </ng-container>
                     </div>
                   </div>
                   <div class="col-9">
                     <div class="form-control-group">
                       <input nbInput fullWidth [(ngModel)]="user.carrera" #carrera="ngModel" name="carrera" type="text"
-                        nbInput id="input-carrera" shape="semi-round" placeholder="Carrera" fieldSize="large"
+                        id="input-carrera" shape="semi-round" placeholder="Carrera" fieldSize="large"
                         [status]="carrera.dirty ? (carrera.invalid  ? 'danger' : 'success') : ''" [required]=true
                         [attr.aria-invalid]="carrera.invalid && carrera.touched ? true : null">
                     </div>
@@ -187,7 +196,8 @@
                         <p class="caption status-danger" *ngIf="indice.errors?.required">
                           ¡Se requiere el indice academico.
                         </p>
-                        <p class="caption status-danger" *ngIf="indice.errors?.minlength || indice.errors?.maxlength">
+                        <p class="caption status-danger"
+                          *ngIf="indice.errors?.minlength || indice.errors?.maxlength || indice.errors?.pattern">
                           El indice academico sigue el siguiente patron: 2.10 , 2.89 , 3.00
                         </p>
                       </ng-container>
@@ -216,26 +226,81 @@
                   </div>
                 </div>
                 <br>
+                <div class="row" *ngIf="is_generate == 'generar'">
+                  <div class="col-12">
+                    <input nbInput fullWidth [(ngModel)]="user.password" #tmp_ps_generate="ngModel" name="tmp_ps_generate"
+                      type="text" id="input-tmp_ps_generate" shape="semi-round" placeholder="Contraseña"
+                      fieldSize="large" [status]="tmp_ps_generate.dirty ? (tmp_ps_generate.invalid  ? 'danger' : 'success') : ''"
+                      [required]=true [minlength]=8 disabled=true style="font-size: 20px;"
+                      [attr.aria-invalid]="tmp_ps_generate.invalid && tmp_ps_generate.touched ? true : null">
+                      <ng-container *ngIf="!status_name">
+                        <p class="caption status-danger">
+                          Para generar la contraseña debes llenar los campos anteriores
+                        </p>
+                      </ng-container>
+                  </div>
+                </div>
+                <div class="row" *ngIf="is_generate == 'crear'">
+                  <!-- FOR CREATE -->
+                  <div class="col-6">
+                    <div class="form-control-group">
+                      <input nbInput fullWidth [(ngModel)]="user.password" #password="ngModel" name="password"
+                        type="password" id="input-password" shape="semi-round" placeholder="Contraseña"
+                        fieldSize="large" [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
+                        [required]=true [minlength]=8
+                        [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+
+                      <ng-container *ngIf="password.invalid && password.touched ">
+                        <p class="caption status-danger" *ngIf="password.errors?.required">
+                          ¡Se requiere la contraseña!
+                        </p>
+                        <p class="caption status-danger" *ngIf="password.errors?.minlength">
+                          La contraseña debe contener por lo menos 8 a carácter.
+                        </p>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-control-group">
+                      <input nbInput fullWidth [(ngModel)]="validate_pass" #validatepass="ngModel" name="validatepass"
+                        type="password" nbInput id="input-validatepass" shape="semi-round"
+                        placeholder="Validar contraseña" fieldSize="large"
+                        [status]="validatepass.dirty ? (validatepass.invalid  ? 'danger' : 'success') : ''"
+                        [required]=true [minlength]=8
+                        [attr.aria-invalid]="validatepass.invalid && validatepass.touched ? true : null">
+
+                      <ng-container *ngIf="validatepass.invalid && validatepass.touched && user.password != validate_pass">
+                        <p class="caption status-danger" *ngIf="validatepass.errors?.required">
+                          ¡Se requiere que valides tu contraseña!
+                        </p>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <!-- FOR CREATE -->
+                </div>
+                <br>
               </div>
               <!-- DERECHA -->
             </div>
 
             <br>
             <div class="row justify-content-center">
-              <button nbButton status="success" shape="semi-round" size="large" [disabled]="submitted || !form.valid"
+              <button nbButton status="success" shape="semi-round" size="giant" [disabled]="submitted || !form.valid"
                 [class.btn-pulse]="submitted">
                 Registrarme </button>
             </div>
 
           </form>
-          <br>
-          <section class="another-action" aria-label="Register">
-            ¿Ya tienes una cuenta? <a class="text-link" style="cursor: pointer"
-              routerLink="/authentication/login">Inicia session</a>
-          </section>
-          <br><br>
         </div>
       </div>
+      <br>
+      <div class="row justify-content-center">
+        <section class="another-action">
+          ¿Ya tienes una cuenta? <button nbButton status="info" shape="round" size="small"
+            routerLink="/authentication/login">Inicia sesion</button>
+        </section>
+      </div>
+      <br><br>
     </nb-card-body>
   </nb-card>
 

@@ -21,7 +21,7 @@
             <div class="form-control-group">
               <label class="label" for="input-email">Correo:</label>
               <input nbInput fullWidth [(ngModel)]="user.email" #email="ngModel" name="email" id="input-email"
-                shape="semi-round" pattern=".+@up\.ac\.pa$" placeholder="Ingresa tu correo" fieldSize="large" autofocus
+                shape="semi-round" pattern=".+@up\.ac\.pa$" placeholder="Ingresa tu correo" fieldSize="large"
                 [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''" [required]=true type=email
                 [attr.aria-invalid]="email.invalid && email.touched ? true : null">
               <ng-container *ngIf="email.invalid && email.touched">
@@ -64,13 +64,15 @@
               Iniciar sesión </button>
 
           </form>
-          <br>
-          <section class="another-action" aria-label="Register">
-            ¿No tienes una cuenta? <a class="text-link" style="cursor: pointer" routerLink="/authentication/register">Registrate</a>
-          </section>
-          <br><br>
         </div>
       </div>
+      <br>
+      <div class="row justify-content-center">
+        <section class="another-action">
+          ¿No tienes una cuenta? <button nbButton status="info" shape="round" size="small" routerLink="/authentication/register">Registrate</button>
+        </section>
+      </div>
+      <br><br>
     </nb-card-body>
   </nb-card>
 
