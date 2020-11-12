@@ -27,7 +27,7 @@
 
                   <div class="col-6">
                     <div class="form-control-group">
-                      <input nbInput fullWidth [(ngModel)]="user.name" #name="ngModel" name="name" type="text" nbInput
+                      <input nbInput fullWidth [(ngModel)]="user.name" #name="ngModel" name="name" type="text"
                         id="input-name" shape="semi-round" placeholder="Nombre" fieldSize="large"
                         [status]="name.dirty ? (name.invalid  ? 'danger' : 'success') : ''" [required]=true
                         [attr.aria-invalid]="name.invalid && name.touched ? true : null">
@@ -43,7 +43,7 @@
                   <div class="col-6">
                     <div class="form-control-group">
                       <input nbInput fullWidth [(ngModel)]="user.lastname" #lastname="ngModel" name="lastname"
-                        type="text" nbInput id="input-lastname" shape="semi-round" placeholder="Apellido"
+                        type="text" id="input-lastname" shape="semi-round" placeholder="Apellido"
                         fieldSize="large" [status]="lastname.dirty ? (lastname.invalid  ? 'danger' : 'success') : ''"
                         [required]=true [attr.aria-invalid]="lastname.invalid && lastname.touched ? true : null">
 
@@ -63,7 +63,7 @@
 
                   <div class="col-7">
                     <div class="form-control-group">
-                      <input nbInput fullWidth [(ngModel)]="user.CIP" #CIP="ngModel" name="CIP" type="text" nbInput
+                      <input nbInput fullWidth [(ngModel)]="user.CIP" #CIP="ngModel" name="CIP" type="text"
                         id="input-CIP" shape="semi-round" placeholder="Cedula" fieldSize="large"
                         pattern="([0-9])\d-(a?\w|([0-0])\d)-([0-9])\d([0-9])\d-a?\d([0-9])\d([0-9])\d$"
                         [status]="CIP.dirty ? (CIP.invalid  ? 'danger' : 'success') : ''" [required]=true
@@ -174,8 +174,7 @@
                       <nb-select filled fullwidth status="control" shape="semi-round" size="large"
                         placeholder="Selecciona la facultad donde estudias: " required
                         (selectedChange)="get_facultad($event)" [(selected)]="selectedItem2">
-                        <nb-option value="1">Facultad de informatica electronica y comunicaciones</nb-option>
-                        <nb-option value="2">Facultad xxxx</nb-option>
+                        <nb-option [value]="item.id" *ngFor="let item of facultades" >{{item.nombre}}</nb-option>
                         <nb-option> -- </nb-option>
                       </nb-select>
                     </div>
@@ -187,7 +186,7 @@
                   <div class="col-4">
                     <div class="form-control-group">
                       <input nbInput fullWidth [(ngModel)]="user.indice" #indice="ngModel" name="indice" type="text"
-                        nbInput id="input-indice" shape="semi-round" placeholder="Indice " fieldSize="large"
+                        id="input-indice" shape="semi-round" placeholder="Indice " fieldSize="large"
                         pattern="[2]+.[0-9]+$" [status]="indice.dirty ? (indice.invalid  ? 'danger' : 'success') : ''"
                         [minlength]=4 [maxlength]=4 [required]=true
                         [attr.aria-invalid]="indice.invalid && indice.touched ? true : null">
@@ -207,7 +206,7 @@
                   <div class="col-5">
                     <div class="form-control-group">
                       <input nbInput fullWidth [(ngModel)]="user.num_recibo" #num_recibo="ngModel" name="num_recibo"
-                        type="text" nbInput id="input-num_recibo" shape="semi-round" placeholder="# Recibo"
+                        type="text" id="input-num_recibo" shape="semi-round" placeholder="# Recibo"
                         fieldSize="large"
                         [status]="num_recibo.dirty ? (num_recibo.invalid  ? 'danger' : 'success') : ''" [minlength]=6
                         [maxlength]=7 [required]=true
@@ -263,7 +262,7 @@
                   <div class="col-6">
                     <div class="form-control-group">
                       <input nbInput fullWidth [(ngModel)]="validate_pass" #validatepass="ngModel" name="validatepass"
-                        type="password" nbInput id="input-validatepass" shape="semi-round"
+                        type="password" id="input-validatepass" shape="semi-round"
                         placeholder="Validar contraseña" fieldSize="large"
                         [status]="validatepass.dirty ? (validatepass.invalid  ? 'danger' : 'success') : ''"
                         [required]=true [minlength]=8

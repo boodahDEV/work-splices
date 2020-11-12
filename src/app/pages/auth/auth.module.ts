@@ -4,7 +4,7 @@ import {AuthRoutingModule} from './auth-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import { OffialLoginComponent } from './login/offial-login/offial-login.component';
 import { FormsModule } from '@angular/forms';
-import { NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbSelectModule, NbThemeModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbInputModule, NbSelectModule, NbThemeModule, NbToastrModule } from '@nebular/theme';
 import { BasicRegComponent } from './registration/basic-reg/basic-reg.component';
 
 @NgModule({
@@ -18,6 +18,7 @@ import { BasicRegComponent } from './registration/basic-reg/basic-reg.component'
     // NbThemeModule.forRoot({name: 'default'}),
     NbInputModule,
     NbIconModule,
+    NbToastrModule,
     NbSelectModule,
     FormsModule      
   ],
