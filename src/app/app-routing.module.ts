@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AdminComponent} from './layout/admin/admin.component';
-import {AuthComponent} from './layout/auth/auth.component';
+import { AdminComponent } from './layout/admin/admin.component';
+import { AuthComponent } from './layout/auth/auth.component';
 
 const routes: Routes = [
   {
@@ -10,10 +10,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'pages/dashboard',
         pathMatch: 'full'
       }, {
-        path: 'dashboard',
+        path: 'pages/dashboard',
+        loadChildren: () => import('./pages/dashboard/dashboard-default.module').then(m => m.DashboardDefaultModule)
+      }, {
+        path: 'pages/dashboard/:id',
         loadChildren: () => import('./pages/dashboard/dashboard-default.module').then(m => m.DashboardDefaultModule)
       }, {
         path: 'basic',

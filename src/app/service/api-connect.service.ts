@@ -8,15 +8,23 @@ import { Router } from "@angular/router";
 })
 export class ApiConnectService {
   connection: any
-  private URL = "https://casper-support-consultation.herokuapp.com/api";
+  private URL = "http://localhost:3246/api";
   constructor(private http: HttpClient, private router: Router) { } 
 
-  signUp(user) {
-    return this.http.post<any>(this.URL + `/login`, user);
+  register(user) {
+    return this.http.post<any>(this.URL + `/register`, user);
   }
 
   login(user) {
     return this.http.post<any>(this.URL + `/login`, user);
+  }
+
+  getFaculty(){
+    return this.http.get<any>(this.URL + `/faculty`);
+  }
+
+  getStudentData(uid){
+    return this.http.get<any>(this.URL + `/user-info/${uid}`);
   }
 
   logger(): Boolean {

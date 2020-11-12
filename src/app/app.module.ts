@@ -12,7 +12,7 @@ import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NotificacionesComponent } from './layout/admin/notificaciones/notificaciones.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NbButtonModule, NbCardModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule, NbSelectModule, NbThemeModule, NbUserModule} from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule, NbSelectModule, NbThemeModule, NbToastrModule, NbUserModule} from '@nebular/theme';
 import { BasicProjectViewComponent } from './pages/basic-project-view/basic-project-view.component';
 import { BasicProjectCommentComponent } from './pages/basic-project-comment/basic-project-comment.component';
 import { BasicUnirmeComponent } from './pages/basic-unirme/basic-unirme.component';
@@ -37,6 +37,7 @@ import { BasicDonateComponent } from './pages/basic-donate/basic-donate.componen
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
+    NbToastrModule,
     NbThemeModule.forRoot({name: 'default'}),
     NbButtonModule,
     NbCardModule,
@@ -45,7 +46,7 @@ import { BasicDonateComponent } from './pages/basic-donate/basic-donate.componen
     NbListModule,
     NbUserModule,
     NbInputModule,
-    // NbEvaIconsModule,
+    // NbEvaIconsModule,0
     NbFormFieldModule,
     NbSelectModule,
     NbLayoutModule
