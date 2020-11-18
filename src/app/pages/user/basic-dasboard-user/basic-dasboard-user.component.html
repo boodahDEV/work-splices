@@ -1,0 +1,133 @@
+<div class="row">
+  <div class="col-12">
+    <div class="col-12 row">
+
+      <div class="col-2">
+        <div class="card card-{{ideas.color}} total-card">
+          <div class="card-block">
+            <div class="text-left">
+              <h4>{{ideas.countData.length}}</h4> <br>
+              <p class="m-0" style="font-size: 20px;font-weight: bold; cursor: pointer;">{{ideas.name}}</p>
+            </div>
+            <span class="label bg-c-{{ideas.color}} value-badges" style="cursor: pointer;"
+              (click)="open(dialog, 'ideas')">Editar</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-2">
+        <div class="card card-{{proyectos.color}} total-card">
+          <div class="card-block">
+            <div class="text-left">
+              <h4>{{proyectos.countData.length}}</h4> <br>
+              <p class="m-0" style="font-size: 20px;font-weight: bold; cursor: pointer;">{{proyectos.name}}</p>
+            </div>
+            <span class="label bg-c-{{proyectos.color}} value-badges" style="cursor: pointer;"
+              (click)="open(dialog,'proyectos')">Editar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <div class="card card-{{equipos.color}} total-card">
+          <div class="card-block">
+            <div class="text-left">
+              <h4>{{equipos.countData.length}}</h4> <br>
+              <p class="m-0" style="font-size: 20px;font-weight: bold; cursor: pointer; ">{{equipos.name}}</p>
+            </div>
+            <span class="label bg-c-{{equipos.color}} value-badges" style="cursor: pointer;"
+              (click)="open(dialog, 'equipos')">Editar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <div class="card card-{{donaciones.color}} total-card">
+          <div class="card-block">
+            <div class="text-left">
+              <h4>{{donaciones.countData.length}}</h4> <br>
+              <p class="m-0" style="font-size: 20px;font-weight: bold; cursor: pointer; "> {{donaciones.name}}</p>
+            </div>
+            <span class="label bg-c-{{donaciones.color}} value-badges" style="cursor: pointer;"
+              (click)="open(dialog, 'donaciones')">Editar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <div class="card card-{{comentarios.color}} total-card">
+          <div class="card-block">
+            <div class="text-left">
+              <h4>{{comentarios.countData.length}}</h4> <br>
+              <p class="m-0" style="font-size: 20px;font-weight: bold; cursor: pointer;">{{comentarios.name}}</p>
+            </div>
+            <span class="label bg-c-{{comentarios.color}} value-badges" style="cursor: pointer;" (click)="open(dialog, 'comentarios')">Editar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <nb-card style="border-radius: 15px">
+          <nb-card-body>
+            <div class="card-block">
+              <div class="row justify-content-center">
+                <i class="icofont icofont-save" style="color:black; font-size: 40px; cursor: pointer;" (click)="saveConfig()"></i>
+                <p class="m-0" style="font-size: 20px;font-weight: bold; cursor: pointer;" (click)="saveConfig()">
+                Guardar cambio
+                </p>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card style="border-radius: 15px">
+    <nb-card-header>
+      <h5>{{textHeader}}</h5>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <h6> Color: </h6>
+        </div>
+        <div class="col-6">
+          <nb-select filled status="control" required (selectedChange)="getColor($event)" [(selected)]="selectedItem">
+            <nb-option value="yellow">yellow</nb-option>
+            <nb-option value="pink">pink</nb-option>
+            <nb-option value="blue">blue</nb-option>
+            <nb-option value="green">green</nb-option>
+            <nb-option value="white">white</nb-option>
+            <nb-option> -- </nb-option>
+          </nb-select>
+        </div>
+        <div class="col-2"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <h6>Titulo:</h6>
+        </div>
+        <div class="col-6">
+          <input type="text" size="small" [(ngModel)]="textTitle" nbInput name="text-title" placeholder="{{textTitle}}" id="text-title">
+        </div>
+        <div class="col-2"></div>
+      </div>
+      <br><br>
+      <div class="row  justify-content-between">
+        <button nbButton size="medium" status="control" (click)="ref.close()">Cerrar</button>
+        <button nbButton size="medium" shape="semi-round" (click) = "ref.close();save()" status="info">Guardar</button>
+      </div>
+    </nb-card-body>
+    
+  </nb-card>
+</ng-template>
