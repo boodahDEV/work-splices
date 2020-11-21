@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
-import {cardToggle, cardClose} from './card-animation';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { cardToggle, cardClose } from './card-animation';
 
 @Component({
   selector: 'app-card',
@@ -10,18 +10,20 @@ import {cardToggle, cardClose} from './card-animation';
 })
 export class CardComponent implements OnInit {
   @Input() headerContent: string;
+  @Input() cardToggle: string;
   @Input() title: string;
   @Input() blockClass: string;
   @Input() cardClass: string;
   @Input() classHeader = false;
-  cardToggle = 'expanded';
   cardClose = 'open';
   fullCard: string;
   fullCardIcon: string;
   loadCard = false;
   isCardToggled = false;
   cardLoad: string;
-  constructor() { }
+  constructor() {
+    this.cardToggle = 'expanded';
+  }
 
   ngOnInit() {
   }
@@ -42,7 +44,7 @@ export class CardComponent implements OnInit {
   appCardRefresh() {
     this.loadCard = true;
     this.cardLoad = 'card-load';
-    setTimeout( () => {
+    setTimeout(() => {
       this.cardLoad = '';
       this.loadCard = false;
     }, 3000);

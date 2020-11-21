@@ -2,6 +2,7 @@ import { TemplateRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import * as bcrypt from 'bcryptjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-basic-dasboard-user',
@@ -38,7 +39,7 @@ export class BasicDasboardUserComponent implements OnInit {
 
   textHeader = ""
   textTitle: any
-  type=""
+  type = ""
   textColor = ""
   selectedItem = "yellow"
 
@@ -79,28 +80,28 @@ export class BasicDasboardUserComponent implements OnInit {
     }
     this.dialogService.open(dialog);
   }
-  
-  save(){
+
+  save() {
     switch (this.type) {
       case "equipos":
-        this.equipos.name = this.textTitle; 
+        this.equipos.name = this.textTitle;
         this.equipos.color = this.textColor
         break;
       case "ideas":
-        this.ideas.name = this.textTitle; 
+        this.ideas.name = this.textTitle;
         this.ideas.color = this.textColor
         break;
       case "comentarios":
         this.comentarios.name = this.textTitle;
-        this.comentarios.color = this.textColor 
+        this.comentarios.color = this.textColor
         break;
       case "proyectos":
         this.proyectos.name = this.textTitle;
-        this.proyectos.color = this.textColor 
+        this.proyectos.color = this.textColor
         break;
       case "donaciones":
         this.donaciones.name = this.textTitle;
-        this.donaciones.color = this.textColor 
+        this.donaciones.color = this.textColor
         break;
     }
   }
@@ -112,11 +113,17 @@ export class BasicDasboardUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveConfig(){
+  saveConfig() {
     let loadData = [];
     loadData.push(JSON.stringify(this.equipos), JSON.stringify(this.donaciones), JSON.stringify(this.comentarios), JSON.stringify(this.ideas), JSON.stringify(this.proyectos))
-    
-    localStorage.setItem("config-card-user",loadData.toString());
+    localStorage.setItem("config-card-user", loadData.toString());
+    Swal.fire({
+      title: "Guardado!",
+      text: `Tus datos fueron guardados correctamente.`,
+      timer: 1500,
+      icon: "success",
+      showConfirmButton: false,
+    });
   }
 
 }

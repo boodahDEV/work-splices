@@ -30,6 +30,11 @@ router.post("/register", async (req, res) => {
       CIP,
       nacionalidad,
       facultad,
+      equipo: new Array(),
+      ideas: new Array(),
+      comentarios: new Array(),
+      proyectos: new Array(),
+      donaciones: new Array(),
       indice,
       num_recibo,
       is_validate: false,
@@ -38,10 +43,16 @@ router.post("/register", async (req, res) => {
       console.log(`[\x1b[32m Register by '${name}'\x1b[0m] -> \x1b[44mdata create on firestore!\x1b[0m -> \x1b[33mSuccessfully\x1b[0m.`);
       res.status(200).send(respuesta)
     }).catch(err => {
-      res.status(422).send({ status: err })
+      res.status(200).send({
+        status: "error",
+        info: err.message
+      })
     })
   }).catch(err => {
-    res.status(422).send({ status: err })
+    res.status(200).send({
+      status: "error",
+      info: err.message
+    })
   })
 
 }); // fin de la ruta /signup
@@ -55,7 +66,10 @@ router.post("/login", async (req, res) => { // Finds the validation errors in th
 
   await database.doSignInWithEmailAndPassword(email, password).then(resp => {
     if (resp.user.emailVerified == false) {
-      res.status(422).send({ status: "Error, favor de validar el correo antes!" })
+      res.status(200).send({
+        status: "error",
+        info: "Error, favor de validar el correo antes!"
+      })
     } else {
       res.status(200).send({
         email: resp.user.email,
@@ -64,7 +78,10 @@ router.post("/login", async (req, res) => { // Finds the validation errors in th
       })
     }
   }).catch(err => {
-    res.status(422).send({ status: err })
+    res.status(200).send({
+      status: "error",
+      info: err.message
+    })
   })
 
 }); // fin de /signup
@@ -100,12 +117,27 @@ router.put("/projects/:id", (req, res) => { // ESTA ACTUALIZA LA INFO DE UN PROD
 
 router.get("/user-info/:id", (req, res) => {
   // AQUI ES PARA CARGAR A LA BASE DE DATOS UN BUFFER DE PRODUCTOS.
+  let datos = {}
   database.firestore.collection('ESTUDIANTES').doc(req.params.id).get().then(resp => {
     console.log(`[\x1b[32m Get data from '${req.params.id}'\x1b[0m] -> \x1b[44mdata extracted\x1b[0m -> \x1b[33mSuccessfully\x1b[0m.`);
-    res.status(200).send(resp.data())
+    datos = resp.data()
+    res.status(200).send(datos)
   }).catch(err => {
-    res.status(422).send({ status: err })
+    res.status(200).send({
+      status: "error",
+      info: err.message
+    })
   })
 })
 
+router.get("/logout", (req, res) => {
+  database.doSignOut().then(resp => {
+    res.status(200).send({ status: resp })
+  }).catch(err => {
+    res.status(200).send({
+      status: "error",
+      info: err.message
+    })
+  })
+})
 module.exports = router; // al final exporto las rutas al index principal

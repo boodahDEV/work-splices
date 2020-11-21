@@ -33,9 +33,7 @@
               </li>
             </ul>
             <ul [@mobileMenuTop]="isCollapsedMobile" class="nav-right" [ngClass]="isCollapsedMobile">
-
-
-              <li class="header-notification">
+              <li class="header-notification" *ngIf="info_user ">
                 <a href="javascript:;">
                   <i class="icofont icofont-notification"></i>
                   <span class="badge bg-c-pink">1</span>
@@ -48,7 +46,9 @@
                   <app-notificaciones></app-notificaciones>
                 </ul>
               </li>
-
+              <li *ngIf="info_user ">
+                <button nbButton status="control" shape="semi-round" siz="giant">Crear</button>
+              </li>
               <!-- <li class="header-notification">
                 <a href="javascript:;" (click)="toggleChat()" class="displayChatbox">
                   <i class="ti-comments"></i>
@@ -56,10 +56,10 @@
                 </a>
               </li> -->
               
-              <li class="user-profile header-notification" *ngIf="info_user">
+              <li class="user-profile header-notification" *ngIf="info_user ">
                 <a style="text-decoration: none;">
-                  <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                  <span>John Doe</span>
+                  <img src="assets/images/unnamed.jpg" class="img-radius">
+                  <span>{{info_user.name}} {{info_user.lastname}}</span>
                   <i class="ti-angle-down"></i>
                 </a>
                 <ul class="show-notification profile-notification">
@@ -69,22 +69,22 @@
                     </a>
                   </li>
                   <li>
-                    <a style="cursor:pointer; text-decoration: none;" (click)="TestConnectToAPI()">
-                      <i class="ti-light-bulb"></i> Mis consultas
+                    <a style="cursor:pointer; text-decoration: none;">
+                      <i class="ti-light-bulb"></i> Mis proyectos
                     </a>  
                   </li>
                   <li>
-                    <a style="cursor:pointer; text-decoration: none;" [routerLink]="['/authentication/lock-screen']" target="_blank">
-                      <i class="ti-credit-card"></i> Mis planes de pago
+                    <a style="cursor:pointer; text-decoration: none;">
+                      <i class="ti-credit-card"></i> Mis ideas
                     </a>
                   </li>
                   <li>
-                    <a style="cursor:pointer; text-decoration: none;" [routerLink]="['/crm-contact']">
+                    <a style="cursor:pointer; text-decoration: none;" >
                      <i class="ti-settings"></i> Configuraciones
                     </a>
                   </li>
                   <li>
-                    <a style="cursor:pointer; text-decoration: none;" [routerLink]="['/authentication/login/with-bg-image']">
+                    <a style="cursor:pointer; text-decoration: none;"  (click)="logout()">
                       <i class="ti-close"></i> Salir
                     </a>
                   </li>
@@ -92,7 +92,7 @@
               </li>
 
               
-              <li class="user-profile header-notification" *ngIf="!info_user">
+              <li class="user-profile header-notification" *ngIf="!info_user ">
                 <button [routerLink]="['/authentication/login']" class="btn bg-c-default btn-outline-info btn-round" style="color: black;">Iniciar session</button>
               </li>
 
@@ -103,125 +103,6 @@
         </div>
       </div>
     </nav>
-
-    <!-- rightbar chat start -->
-    <!-- <div [@slideInOut]="verticalPlacement === 'right' ? chatToggleInverse : chatToggle" id="sidebar" class="users p-chat-user">
-      <div class="had-container">
-        <div class="card card_main p-fixed users-main">
-          <div class="user-box">
-            <div class="card-body">
-              <div class="right-icon-control">
-                <input class="form-control search-text" placeholder="Search Friend" id="search-friends" #searchFriends (keyup)="searchFriendList($event)">
-                <div class="form-icon">
-                  <i class="icofont icofont-search"></i>
-                </div>
-              </div>
-            </div>
-            <div class="main-friend-list scroll-window">
-              <perfect-scrollbar [style.max-width]="'100%'" [config]="config">
-                <div (click)="toggleChatInner()" class="media userlist-box" data-id="1" placement="left" ngbTooltip="Josephin Doe">
-                  <a class="media-left" href="javascript:;">
-                    <img class="media-object " src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
-                    <div class="live-status bg-success"></div>
-                  </a>
-                  <div class="media-body">
-                    <div class="f-13 chat-header">Josephin Doe</div>
-                  </div>
-                </div>
-                <div (click)="toggleChatInner()" class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe" placement="left" ngbTooltip="Lary Doe">
-                  <a class="media-left" href="javascript:;">
-                    <img class="media-object " src="assets/images/avatar-3.jpg" alt="Generic placeholder image">
-                    <div class="live-status bg-success"></div>
-                  </a>
-                  <div class="media-body">
-                    <div class="f-13 chat-header">Lary Doe</div>
-                  </div>
-                </div>
-                <div (click)="toggleChatInner()" class="media userlist-box" data-id="3" data-status="online" data-username="Alice" placement="left" ngbTooltip="Alice">
-                  <a class="media-left" href="javascript:;">
-                    <img class="media-object " src="assets/images/avatar-5.jpg" alt="Generic placeholder image">
-                    <div class="live-status bg-success"></div>
-                  </a>
-                  <div class="media-body">
-                    <div class="f-13 chat-header">Alice</div>
-                  </div>
-                </div>
-                <div (click)="toggleChatInner()" class="media userlist-box" data-id="4" data-status="offline" data-username="Alia" placement="left" ngbTooltip="Alia">
-                  <a class="media-left" href="javascript:;">
-                    <img class="media-object " src="assets/images/avatar-3.jpg" alt="Generic placeholder image">
-                    <div class="live-status bg-danger"></div>
-                  </a>
-                  <div class="media-body">
-                    <div class="f-13 chat-header">Alia</div>
-                  </div>
-                </div>
-                <div (click)="toggleChatInner()" class="media userlist-box" data-id="5" data-status="online" data-username="Suzen" placement="left" ngbTooltip="Suzen">
-                  <a class="media-left" href="javascript:;">
-                    <img class="media-object " src="assets/images/avatar-5.jpg" alt="Generic placeholder image">
-                    <div class="live-status bg-success"></div>
-                  </a>
-                  <div class="media-body">
-                    <div class="f-13 chat-header">Suzen</div>
-                  </div>
-                </div>
-                <div (click)="toggleChatInner()" class="media userlist-box" data-id="6" data-status="offline" data-username="Michael Scofield" placement="left" ngbTooltip="Michael Scofield">
-                <a class="media-left" href="javascript:;">
-                  <img class="media-object " src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
-                  <div class="live-status bg-danger"></div>
-                </a>
-                <div class="media-body">
-                  <div class="f-13 chat-header">Michael Scofield</div>
-                </div>
-              </div>
-              </perfect-scrollbar>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <div [@slideOnOff]="verticalPlacement === 'right' ? chatInnerToggleInverse : chatInnerToggle" class="card card_main showChat_inner">
-      <div class="media chat-inner-header">
-        <a class="back_chatBox" (click)="toggleChatInner()">
-          <i class="icofont icofont-rounded-left"></i> Josephin Doe
-        </a>
-      </div>
-        <perfect-scrollbar [style.max-width]="'100%'" [style.max-height]="'calc(100vh - 230px)'" [config]="config">
-          <div class="media chat-messages">
-            <a class="media-left photo-table" href="javascript:;">
-              <img class="media-object  m-t-5" src="assets/images/avatar-1.jpg" alt="Generic placeholder image">
-            </a>
-            <div class="media-body chat-menu-content">
-              <div class="">
-                <p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
-                <p class="chat-time">8:20 a.m.</p>
-              </div>
-            </div>
-          </div>
-          <div class="media chat-messages">
-            <div class="media-body chat-menu-reply">
-              <div class="">
-                <p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
-                <p class="chat-time">8:20 a.m.</p>
-              </div>
-            </div>
-            <div class="media-right photo-table">
-              <a href="javascript:;">
-                <img class="media-object  m-t-5" src="assets/images/avatar-4.jpg" alt="Generic placeholder image">
-              </a>
-            </div>
-          </div>
-        </perfect-scrollbar>
-        <div class="chat-reply-box p-b-20">
-          <div class="right-icon-control">
-            <input type="text" class="form-control search-text" placeholder="Share Your Thoughts">
-            <div class="form-icon">
-              <i class="icofont icofont-paper-plane"></i>
-            </div>
-          </div>
-        </div>
-    </div> -->
-    <!-- right-bar inner chat end -->
 
     <div class="pcoded-main-container" [style.margin-top]="headerFixedMargin">
       <div class="pcoded-wrapper">
@@ -239,14 +120,6 @@
               <div *ngFor="let asideItems of menuItems.getAll()" class="d-color">
                 <div class="pcoded-navigatio-lavel" [attr.menu-title-theme]="menuTitleTheme">{{asideItems.label}}</div>
                 <ul class="pcoded-item pcoded-left-item" [attr.item-border]="itemBorder" [attr.item-border-style]="itemBorderStyle" [attr.subitem-border]="subItemBorder" *ngFor="let asideItem of asideItems.main" appAccordionLink group="{{asideItem.state}}">
-                  <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'external'" appAccordionLink group="{{asideItem.state}}">
-                    <a href="" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle>
-                      <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i><b>{{ asideItem.short_label }}</b></span>
-                      <span class="pcoded-mtext">{{ asideItem.name }}</span>
-                      <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
-                      <span class="pcoded-mcaret"></span>
-                    </a>
-                  </li>
 
                   <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'link'" appAccordionLink group="{{asideItem.state}}">
                     <a [routerLink]="['/', asideItem.main_state, asideItem.state]" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle *ngIf="asideItem.main_state; else mainContent">
@@ -256,7 +129,7 @@
                       <span class="pcoded-mcaret"></span>
                     </a>
                     <ng-template #mainContent>
-                      <a [routerLink]="['/', asideItem.state]" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle>
+                      <a [routerLink]="['/'+asideItem.state]" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle>
                         <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i><b>{{ asideItem.short_label }}</b></span>
                         <span class="pcoded-mtext">{{ asideItem.name }}</span>
                         <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
@@ -264,47 +137,7 @@
                       </a>
                     </ng-template>
                   </li>
-                  <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'sub'" class="pcoded-hasmenu" [attr.dropdown-icon]="dropDownIcon" [attr.subitem-icon]="subItemIcon" appAccordionLink group="{{asideItem.state}}">
-                    <a [routerLinkActive]="['active']" href="javascript:;" appAccordionToggle>
-                      <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i><b>{{ asideItem.short_label }}</b></span>
-                      <span class="pcoded-mtext">{{ asideItem.name }}</span>
-                      <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
-                      <span class="pcoded-mcaret"></span>
-                    </a>
-                    <ul class="pcoded-submenu">
-                      <ng-template ngFor let-asideChildren [ngForOf]="asideItem.children">
-                        <li [routerLinkActive]="['active']" *ngIf="asideChildren.type !== 'sub'">
-                          <a [routerLink]="['/', asideItem.state, asideChildren.state]" target="{{asideChildren.target ? '_blank' : '_self'}}">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext">{{ asideChildren.name }} </span>
-                            <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
-                            <span class="pcoded-mcaret"></span>
-                          </a>
-                        </li>
-
-                        <li [routerLinkActive]="['active']" class="pcoded-hasmenu" [attr.dropdown-icon]="dropDownIcon" [attr.subitem-icon]="subItemIcon" *ngIf="asideChildren.type === 'sub'" appAccordionLink group="sub-toggled">
-                          <a href="javascript:;" appAccordionToggle>
-                            <span class="pcoded-micon"><i class="ti-direction-alt"></i></span>
-                            <span class="pcoded-mtext">{{ asideChildren.name }}</span>
-                            <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
-                            <span class="pcoded-mcaret"></span>
-                          </a>
-                          <ul class="pcoded-submenu">
-                            <ng-template ngFor let-asideChildrenSub [ngForOf]="asideChildren.children">
-                              <li [routerLinkActive]="['active']">
-                                <a [routerLink]="['/', asideItem.state, asideChildren.state, asideChildrenSub.state]" target="{{asideChildrenSub.target ? '_blank' : '_self'}}">
-                                  <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                  <span class="pcoded-mtext">{{ asideChildrenSub.name }}</span>
-                                  <span *ngFor="let asideChildrenSubBadge of asideChildrenSub.badge" class="pcoded-badge label label-{{ asideChildrenSubBadge.type }}">{{asideChildrenSubBadge.value}}</span>
-                                  <span class="pcoded-mcaret"></span>
-                                </a>
-                              </li>
-                            </ng-template>
-                          </ul>
-                        </li>
-                      </ng-template>
-                    </ul>
-                  </li>
+                  
                 </ul>
               </div>
             </perfect-scrollbar>

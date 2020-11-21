@@ -35,4 +35,8 @@ export class ApiConnectService {
     }
   }
 
+  logout(){
+    return this.http.get<any>(this.URL + `/logout`);
+  }
+
 }

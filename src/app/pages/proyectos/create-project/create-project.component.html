@@ -1,0 +1,179 @@
+<div class="row justify-content-center">
+    <div class="col-md-12 col-xl-12 align-self-center">
+        <div class="card widget-statstic-card">
+            <div class="card-header">
+                <!-- <div class="card-header-left">
+                    <h2>Crear proyecto</h2>
+                </div> -->
+                <div class="row justify-content-between">
+                    <div class="col-6">
+                        <h2>Crear proyecto</h2>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input type="text" placeholder="Nombre icono" [(ngModel)]="icon_principal" nbInput
+                                    shape="semi-round" name="icon" id="icon" size="11">
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-4">
+                            <nb-select filled status="control" shape="semi-round" placeholder="Color icono:" required
+                                (selectedChange)="getColor($event)" [(selected)]="selectedItem1">
+                                <nb-option value="yellow">Amarillo</nb-option>
+                                <nb-option value="pink">Rosa</nb-option>
+                                <nb-option value="blue">Azul</nb-option>
+                                <nb-option value="green">Verde</nb-option>
+                                <nb-option value="orenge">Naranja</nb-option>
+                                <nb-option value="lite-green">verdecaña</nb-option>
+                                <nb-option> -- </nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-9">
+                        <span class="text-muted" style="text-align: center;">Puedes obtener la lista de iconos en <a
+                                target="_blank" href="https://icofont.com/icons" style="cursor: pointer;">IcoFont</a>.
+                            Recuerda solo copiar el nombre del icono.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-block">
+                <i class="icofont icofont-{{icon_principal}} st-icon bg-c-{{color_icon}} txt-lite-color"></i>
+                <div class="row ">
+                    <div class="col-12">
+                        <input nbInput fullWidth [(ngModel)]="title" #titulo="ngModel" name="titulo" type="text" nbInput
+                            id="input-text" shape="semi-round" placeholder="Titulo del proyecto" fieldSize="large"
+                            [status]="titulo.dirty ? (titulo.invalid  ? 'danger' : 'success') : ''" [required]=true
+                            [minlength]=21 [maxlength]=52
+                            [attr.aria-invalid]="titulo.invalid && titulo.touched ? true : null">
+
+                        <ng-container *ngIf="titulo.invalid && titulo.touched ">
+                            <p class="caption status-danger" *ngIf="titulo.errors?.required">
+                                ¡Se requiere el titulo del proyecto!
+                            </p>
+                            <p class="caption status-danger"
+                                *ngIf="titulo.errors?.minlength || titulo.errors?.maxlength">
+                                El titulo del proyecto debe tener como minimo 21 caracteres y un maximo de 52
+                                caracteres.
+                            </p>
+                        </ng-container>
+                    </div>
+                </div>
+                <br>
+                <div class="row ">
+                    <div class="col-12">
+                        <app-card [title]="'Descripcion detallada del proyecto: '" 
+                            [classHeader]="true">
+                            <span class="code-header">
+                                <span class="text-muted">
+                                    Esta funcion esta limitada a SOLO escritura. Pronto las opciones de insertar
+                                    Imagenes y Videos junto a la pestaña de Adjuntos.
+                                </span>
+                            </span>
+                            <ckeditor [editor]="Editor" [(ngModel)]="descripcion" (ready)="onReady($event)"></ckeditor>
+                        </app-card>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <nb-select filled fullWidth status="control" shape="semi-round"
+                                    placeholder="Equipo responsable: " required (selectedChange)="getColor($event)"
+                                    [(selected)]="selectedItem2">
+                                    <nb-option value="yellow">Amarillo</nb-option>
+                                    <nb-option> -- </nb-option>
+                                </nb-select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="p-b-15 ">
+                                    <span class="text-muted" style="font-size: 18px;">
+                                        Creador:
+                                    </span>
+                                    <input nbInput type="text" disabled fullWidth name="creador" id="creador"
+                                        style="height: 38px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-6">
+                                <nb-toggle labelPosition="start" status="info">¿Donaciones externas? </nb-toggle>
+                            </div>
+                            <div class="row col-6">
+                                <nb-toggle labelPosition="start" status="info">¿Permitir comentarios? </nb-toggle>
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <!-- <div class="col-12"> -->
+                                <div class="col-6">
+                                    <span class="text-muted" style="font-size: 18px;">
+                                        Monto inicial:
+                                    </span>
+                                    <input nbInput type="text" name="monto" id="monto" size="5" placeholder="$"
+                                        style="height: 38px; font-size: 20px;">
+                                </div>
+                                <div class="col-6 align-self-center">
+                                    <nb-select filled status="control" shape="semi-round" placeholder="Tipo proyecto: "
+                                        required (selectedChange)="getColor($event)" [(selected)]="selectedItem4">
+                                        <nb-option value="yellow">Investigacion</nb-option>
+                                        <nb-option value="yellow">Pro. Personal</nb-option>
+                                        <nb-option value="yellow">Pro. Educativo</nb-option>
+                                        <nb-option> -- </nb-option>
+                                    </nb-select>
+                                </div>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12">
+                        <app-card [title]="'Adjuntos:'" [cardToggle]="'collapsed'" [classHeader]="true">
+                            <span class="code-header">
+                                <span class="text-muted">
+                                    Esta funcion aun No està disponible.
+                                </span>
+                            </span>
+                            <div class="col-4">
+
+                            </div>
+                        </app-card>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <nb-toggle labelPosition="start" [(ngModel)]="toggleAsesor" status="info">Profesor asesor
+                        </nb-toggle>
+                    </div>
+                    <div class="col-4" *ngIf="toggleAsesor">
+                        <input type="text" fullWidth nbInput shape="semi-round" name="asesor" id="asesor">
+                    </div>
+                    <div class="col-5">
+                        <span class="text-muted" style="font-size: 18px;">
+                            Fecha creacion:
+                        </span>
+                        <input nbInput type="text" name="fecha" id="fecha" size="10" disabled
+                            style="height: 38px; font-size: 20px;">
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-2">
+                    <button nbButton size="giant" status="control" (click)="save()">Cancelar</button>
+                </div>
+                <div class="col-2">
+                    <button nbButton size="giant" status="control" (click)="save()">Crear</button>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

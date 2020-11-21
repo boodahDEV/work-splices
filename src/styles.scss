@@ -14782,13 +14782,13 @@ table {
     font-weight: 600;
     display: inline-block;
   }
-  span {
-    border-radius: 30px;
-    background-color: #c6d8ff;
-    padding: 5px 20px;
-    color: #4680ff;
-    font-weight: 600;
-  }
+  // span {
+  //   border-radius: 30px;
+  //   background-color: #c6d8ff;
+  //   padding: 5px 20px;
+  //   color: #4680ff;
+  //   font-weight: 600;
+  // }
 }
 
 .prod-order-card {
@@ -15940,6 +15940,7 @@ table {
   &.bg-c-green {
     border: 1px solid #93BE52;
   }
+
   &:hover {
     background-color: #fff;
     &.bg-c-blue {

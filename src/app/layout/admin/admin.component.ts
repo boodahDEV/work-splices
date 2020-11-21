@@ -1,7 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/animations';
-import {MenuItems} from '../../shared/menu-items/menu-items';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { animate, AUTO_STYLE, state, style, transition, trigger } from '@angular/animations';
+import { MenuItems } from '../../shared/menu-items/menu-items';
 import { ApiConnectService } from '../../service/api-connect.service';
+import Swal from 'sweetalert2';
+import * as bcrypt from 'bcryptjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { ValidateStorageService } from '../../service/validate-storage.service';
 
 
 @Component({
@@ -47,12 +52,12 @@ import { ApiConnectService } from '../../service/api-connect.service';
     ]),
     trigger('fadeInOutTranslate', [
       transition(':enter', [
-        style({opacity: 0}),
-        animate('400ms ease-in-out', style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate('400ms ease-in-out', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        style({transform: 'translate(0)'}),
-        animate('400ms ease-in-out', style({opacity: 0}))
+        style({ transform: 'translate(0)' }),
+        animate('400ms ease-in-out', style({ opacity: 0 }))
       ])
     ])
   ]
@@ -98,77 +103,103 @@ export class AdminComponent implements OnInit {
   configOpenRightBar: string;
   isSidebarChecked: boolean;
   isHeaderChecked: boolean;
+  data$: Observable<any>;
+  uid: any
+
 
   @ViewChild('searchFriends') search_friends: ElementRef;
   public config: any;
 
   /** PARAMETROS DE SESION */
   info_user = null
-  constructor(public menuItems: MenuItems, private apiconnect: ApiConnectService) {
+  constructor(public menuItems: MenuItems, private api: ApiConnectService, public router: Router, public active: ActivatedRoute, private vss: ValidateStorageService) {
     /** VERIFICA SESSION-STORAGE */
+
+
     if (sessionStorage || this.info_user == null) {
       setTimeout(() => {
         for (const key in sessionStorage) {
-          if (sessionStorage.hasOwnProperty(key) && key === "session-data") {
-            this.info_user = JSON.parse(sessionStorage.getItem("session-data"));
-            // this.status_login = true
-            console.log(this.info_user)
+          if (sessionStorage.hasOwnProperty(key) && key.charAt(0) === "#") {
+            this.uid = JSON.parse(sessionStorage.getItem("session-data")).uid;
+            bcrypt.compare(this.uid, key).then(() => {
+              this.info_user = JSON.parse(sessionStorage.getItem(key));
+            })
           }
         }
-      }, 320)
+      }, 500)
     }
 
-
     /** CONFIGURACION DE PARAMETROS DE LA INTERFAZ */
-      this.navType = 'st5';
-      this.themeLayout = 'vertical';
-      this.vNavigationView = 'view1';
-      this.verticalPlacement = 'left';
-      this.verticalLayout = 'wide';
-      this.deviceType = 'desktop';
-      this.verticalNavType = 'expanded';
-      this.verticalEffect = 'shrink';
-      this.pcodedHeaderPosition = 'fixed';
-      this.pcodedSidebarPosition = 'fixed';
-      this.headerTheme = 'theme1';
-      this.logoTheme = 'theme1';
+    this.navType = 'st5';
+    this.themeLayout = 'vertical';
+    this.vNavigationView = 'view1';
+    this.verticalPlacement = 'left';
+    this.verticalLayout = 'wide';
+    this.deviceType = 'desktop';
+    this.verticalNavType = 'expanded';
+    this.verticalEffect = 'shrink';
+    this.pcodedHeaderPosition = 'fixed';
+    this.pcodedSidebarPosition = 'fixed';
+    this.headerTheme = 'theme1';
+    this.logoTheme = 'theme1';
 
-      this.toggleOn = true;
+    this.toggleOn = true;
 
-      this.headerFixedMargin = '80px';
-      this.navBarTheme = 'themelight1';
-      this.activeItemTheme = 'theme4';
+    this.headerFixedMargin = '80px';
+    this.navBarTheme = 'themelight1';
+    this.activeItemTheme = 'theme4';
 
-      this.isCollapsedMobile = 'no-block';
-      this.isCollapsedSideBar = 'no-block';
+    this.isCollapsedMobile = 'no-block';
+    this.isCollapsedSideBar = 'no-block';
 
-      this.chatToggle = 'out';
-      this.chatToggleInverse = 'in';
-      this.chatInnerToggle = 'off';
-      this.chatInnerToggleInverse = 'on';
+    this.chatToggle = 'out';
+    this.chatToggleInverse = 'in';
+    this.chatInnerToggle = 'off';
+    this.chatInnerToggleInverse = 'on';
 
-      this.menuTitleTheme = 'theme5';
-      this.itemBorder = true;
-      this.itemBorderStyle = 'none';
-      this.subItemBorder = true;
-      this.subItemIcon = 'style6';
-      this.dropDownIcon = 'style1';
-      this.isSidebarChecked = true;
-      this.isHeaderChecked = true;
+    this.menuTitleTheme = 'theme5';
+    this.itemBorder = true;
+    this.itemBorderStyle = 'none';
+    this.subItemBorder = true;
+    this.subItemIcon = 'style6';
+    this.dropDownIcon = 'style1';
+    this.isSidebarChecked = true;
+    this.isHeaderChecked = true;
 
-      const scrollHeight = window.screen.height - 150;
-      this.innerHeight = scrollHeight + 'px';
-      this.windowWidth = window.innerWidth;
-      this.setMenuAttributes(this.windowWidth);
+    const scrollHeight = window.screen.height - 150;
+    this.innerHeight = scrollHeight + 'px';
+    this.windowWidth = window.innerWidth;
+    this.setMenuAttributes(this.windowWidth);
     /** CONFIGURACION DE PARAMETROS DE LA INTERFAZ */
   }
 
   ngOnInit() {
     this.setBackgroundPattern('pattern2');
-  }
+    console.log(this.uid)
+    this.menuItems.getAll().forEach(x => {
+      x.main.forEach(ob => {
+        let separate = ob.state.split(":id")
+        let final_concat = ""
+        for (let index = 0; index < separate.length; index++) {
+          if ((index & 2) == 0) {
+            if (typeof separate[index + 1] !== "undefined" && index !== 0) {
+              final_concat = ob.state.replace(":id", "student")
+              ob.state = final_concat
+              continue;
+            } else {
+              final_concat = ob.state.replace(":id", JSON.parse(sessionStorage.getItem("session-data")).uid)
+              continue;
+            }
+          }
+          else {
+            final_concat = ob.state.replace(":id", JSON.parse(sessionStorage.getItem("session-data")).uid)
+            continue;
+          }
+        }
 
-  TestConnectToAPI(){
-    
+        ob.state = final_concat
+      })
+    })
   }
 
   onResize(event) {
@@ -219,35 +250,45 @@ export class AdminComponent implements OnInit {
     this.isCollapsedMobile = this.isCollapsedMobile === 'yes-block' ? 'no-block' : 'yes-block';
   }
 
-  // toggleChat() {
-  //   this.chatToggle = this.chatToggle === 'out' ? 'in' : 'out';
-  //   this.chatToggleInverse = this.chatToggleInverse === 'out' ? 'in' : 'out';
-  //   this.chatInnerToggle = 'off';
-  //   this.chatInnerToggleInverse = 'off';
-  // }
+  logout() {
+    this.api.logout().subscribe(res => {
+      Swal.fire({
+        title: 'Estas seguro que quieres salir?',
+        text: "Los datos de sesion seran eliminados al salir, todo lo que no quedo guardado se perdera.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Estoy de acuerdo'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: 'Nos vemos pronto!',
+            text: 'Tu sesion a sido concluida con exito.',
+            timer: 800,
+            showConfirmButton: false,
+            icon: "success"
+          })
+          if (sessionStorage) {
+            setTimeout(() => {
+              for (const key in sessionStorage) {
+                if (sessionStorage.hasOwnProperty(key) && key === "session-data" || key.charAt(0) === "#") {
+                  sessionStorage.removeItem(key);
+                }
+              }
+              this.router.navigate([`dashboard`])
+              // window.location.reload()
+            }, 320);
+            setTimeout(() => {
+              window.location.reload()
+            }, 320)
+          }
 
-  // toggleChatInner() {
-  //   this.chatInnerToggle = this.chatInnerToggle === 'off' ? 'on' : 'off';
-  //   this.chatInnerToggleInverse = this.chatInnerToggleInverse === 'off' ? 'on' : 'off';
-  // }
+        }
+      })
+    })
 
-  // searchFriendList(e: Event) {
-  //   const search = (this.search_friends.nativeElement.value).toLowerCase();
-  //   let search_input: string;
-  //   let search_parent: any;
-  //   const friendList = document.querySelectorAll('.userlist-box .media-body .chat-header');
-  //   Array.prototype.forEach.call(friendList, function(elements, index) {
-  //     search_input = (elements.innerHTML).toLowerCase();
-  //     search_parent = (elements.parentNode).parentNode;
-  //     if (search_input.indexOf(search) !== -1) {
-  //       search_parent.classList.add('show');
-  //       search_parent.classList.remove('hide');
-  //     } else {
-  //       search_parent.classList.add('hide');
-  //       search_parent.classList.remove('show');
-  //     }
-  //   });
-  // }
+  }
 
   toggleOpenedSidebar() {
     this.isCollapsedSideBar = this.isCollapsedSideBar === 'yes-block' ? 'no-block' : 'yes-block';

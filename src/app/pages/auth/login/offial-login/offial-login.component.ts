@@ -27,28 +27,37 @@ export class OffialLoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.user).subscribe(resp => {
-      sessionStorage.setItem('session-data', JSON.stringify(resp))
-      Swal.fire({
-        title: "Inicio correcto",
-        text: `Bienvenido a YEKSPLICES!`,
-        timer: 500,
-        icon: "success",
-        showConfirmButton: false,
-      });
-      // window.location.reload()
-      setTimeout(() => {
-        this.router.navigate([`/pages/dashboard/${resp.uid}`])
-      }, 450);
-      this.auth.getStudentData(resp.uid).subscribe(respuesta => {
-        bcrypt.genSalt(10, (err, salt)=> {
-          bcrypt.hash(resp.uid, salt, (err, hash)=> {
-            sessionStorage.setItem(hash, JSON.stringify(respuesta))
-          });
+      if (resp.status == "error") {
+        Swal.fire({
+          title: "Oppss",
+          text: `${resp.info}`,
+          timer: 4500,
+          icon: "error",
+          showConfirmButton: false,
         });
-        console.log("Load data...")
-      })
+      } else {
+        sessionStorage.setItem('session-data', JSON.stringify(resp))
+        Swal.fire({
+          title: "Inicio correcto",
+          text: `Bienvenido ${resp.name} a YEKSPLICES!`,
+          timer: 500,
+          icon: "success",
+          showConfirmButton: false,
+        });
+        // window.location.reload()
+        setTimeout(() => {
+          this.router.navigate([`/dashboard/${JSON.parse(sessionStorage.getItem('session-data')).uid
+            }`])
+        }, 450);
+        this.auth.getStudentData(resp.uid).subscribe(respuesta => {
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(resp.uid, salt, (err, hash) => {
+              sessionStorage.setItem("#" + hash, JSON.stringify(respuesta))
+            });
+          });
+          console.log("Load data...")
+        })
+      }
     })
-    // sessionStorage.setItem('session-data', JSON.stringify(resp))
-
   }
 }

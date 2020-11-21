@@ -10,32 +10,20 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'pages/dashboard',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
       }, {
-        path: 'pages/dashboard',
+        path: 'dashboard',
         loadChildren: () => import('./pages/dashboard/dashboard-default.module').then(m => m.DashboardDefaultModule)
       }, {
-        path: 'pages/dashboard/:id',
+        path: 'dashboard/:id',
         loadChildren: () => import('./pages/dashboard/dashboard-default.module').then(m => m.DashboardDefaultModule)
       }, {
-        path: 'basic',
-        loadChildren: () => import('./pages/ui-elements/basic/basic.module').then(m => m.BasicModule)
-      }, {
-        path: 'notifications',
-        loadChildren: () => import('./pages/ui-elements/advance/notifications/notifications.module').then(m => m.NotificationsModule)
-      }, {
-        path: 'bootstrap-table',
-        loadChildren: () => import('./pages/ui-elements/tables/bootstrap-table/basic-bootstrap/basic-bootstrap.module').then(m => m.BasicBootstrapModule),
-      }, {
-        path: 'map',
-        loadChildren: () => import('./pages/map/google-map/google-map.module').then(m => m.GoogleMapModule),
-      }, {
-        path: 'user',
+        path: 'user/:id/:id2',
         loadChildren: () => import('./pages/user/profile/profile.module').then(m => m.ProfileModule)
       }, {
-        path: 'simple-page',
-        loadChildren: () => import('./pages/simple-page/simple-page.module').then(m => m.SimplePageModule)
+        path: 'project/:id/:id2',
+        loadChildren: () => import('./pages/proyectos/proyectos.module').then(m => m.ProyectosModules)
       }
     ]
   },

@@ -35,151 +35,96 @@ const MENUITEMS = [
     label: 'Navigacion',
     main: [
       {
-        state: 'dashboard',
-        short_label: 'D',
-        name: 'Principal',
+        state: 'user/:id/:id/dashboard',
+        name: 'Mi centro de control',
+        type: 'link',
+        icon: 'ti-harddrives'
+      },
+      {
+        state: 'dashboard/:id',
+        name: 'Explorar',
         type: 'link',
         icon: 'ti-home'
       },
-      // {
-      //   state: 'basic',
-      //   short_label: 'B',
-      //   name: 'Basic Components',
-      //   type: 'sub',
-      //   icon: 'ti-layout-grid2-alt',
-      //   children: [
-      //     {
-      //       state: 'button',
-      //       name: 'Button'
-      //     },
-      //     {
-      //       state: 'typography',
-      //       name: 'Typography'
-      //     }
-      //   ]
-      // },
-      // {
-      //   state: 'notifications',
-      //   short_label: 'n',
-      //   name: 'Notifications',
-      //   type: 'link',
-      //   icon: 'ti-crown'
-      // },
+      {
+        state: "project/:id/:id/dashboard",
+        name: 'Proyectos',
+        type: 'link',
+        icon: 'ti-briefcase'
+      },
+      {
+        state: 'project/:id/:id/ideas',
+        name: 'Ideas',
+        type: 'link',
+        icon: 'ti-light-bulb'
+      },
+      {
+        state: 'user/:id/:id/teams',
+        name: 'Equipos',
+        type: 'link',
+        icon: 'ti-flag-alt-2'
+      },
+      {
+        state: 'user/:id/:id/peoples',
+         name: 'Personas',
+        type: 'link',
+        icon: 'ti-user'
+      }
     ],
-  },
-  {
-    label: 'Tables',
-    main: [
-      // {
-      //   state: 'bootstrap-table',
-      //   short_label: 'B',
-      //   name: 'Bootstrap Table',
-      //   type: 'link',
-      //   icon: 'ti-receipt'
-      // }
-    ]
-  },
+  }
   // {
-  //   label: 'Map And Extra Pages ',
+  //   label: 'Gestion de proyectos',
   //   main: [
   //     {
-  //       state: 'map',
-  //       short_label: 'M',
-  //       name: 'Maps',
+  //       state: 'bootstrap-table',
+  //       short_label: 'B',
+  //       name: 'Manejos de gastos',
   //       type: 'link',
-  //       icon: 'ti-map-alt'
+  //       icon: 'ti-receipt'
   //     },
   //     {
-  //       state: 'authentication',
-  //       short_label: 'A',
-  //       name: 'Authentication',
-  //       type: 'sub',
-  //       icon: 'ti-id-badge',
-  //       children: [
-  //         {
-  //           state: 'login',
-  //           type: 'link',
-  //           name: 'Login',
-  //           target: true
-  //         }, {
-  //           state: 'registration',
-  //           type: 'link',
-  //           name: 'Registration',
-  //           target: true
-  //         }
-  //       ]
+  //       state: 'bootstrap-table',
+  //       short_label: 'B',
+  //       name: 'Gestion de fondos',
+  //       type: 'link',
+  //       icon: 'ti-receipt'
   //     },
   //     {
-  //       state: 'user',
-  //       short_label: 'U',
-  //       name: 'User Profile',
+  //       state: 'bootstrap-table',
+  //       short_label: 'B',
+  //       name: 'Administrar proyecto',
   //       type: 'link',
-  //       icon: 'ti-user'
+  //       icon: 'ti-receipt'
+  //     },
+  //     {
+  //       state: 'bootstrap-table',
+  //       short_label: 'B',
+  //       name: 'Solicitudes de union',
+  //       type: 'link',
+  //       icon: 'ti-receipt'
+  //     },
+  //     {
+  //       state: 'bootstrap-table',
+  //       short_label: 'B',
+  //       name: 'Estadisticas',
+  //       type: 'link',
+  //       icon: 'ti-receipt'
   //     }
   //   ]
   // },
-  {
-    label: 'Other',
-    main: [
-      // {
-      //   state: '',
-      //   short_label: 'M',
-      //   name: 'Menu Levels',
-      //   type: 'sub',
-      //   icon: 'ti-direction-alt',
-      //   children: [
-      //     {
-      //       state: '',
-      //       name: 'Menu Level 2.1',
-      //       target: true
-      //     }, {
-      //       state: '',
-      //       name: 'Menu Level 2.2',
-      //       type: 'sub',
-      //       children: [
-      //         {
-      //           state: '',
-      //           name: 'Menu Level 2.2.1',
-      //           target: true
-      //         },
-      //         {
-      //           state: '',
-      //           name: 'Menu Level 2.2.2',
-      //           target: true
-      //         }
-      //       ]
-      //     }, {
-      //       state: '',
-      //       name: 'Menu Level 2.3',
-      //       target: true
-      //     }, {
-      //       state: '',
-      //       name: 'Menu Level 2.4',
-      //       type: 'sub',
-      //       children: [
-      //         {
-      //           state: '',
-      //           name: 'Menu Level 2.4.1',
-      //           target: true
-      //         },
-      //         {
-      //           state: '',
-      //           name: 'Menu Level 2.4.2',
-      //           target: true
-      //         }
-      //       ]
-      //     }
-      //   ]
-      // },
-      // {
-      //   state: 'simple-page',
-      //   short_label: 'S',
-      //   name: 'Simple Page',
-      //   type: 'link',
-      //   icon: 'ti-layout-sidebar-left'
-      // }
-    ]
-  }
+  // {
+  //   label: 'Otros',
+  //   main: [
+  //     {
+  //       state: 'bootstrap-table',
+  //       short_label: 'B',
+  //       name: 'Configuracion',
+  //       type: 'link',
+  //       icon: 'ti-receipt'
+  //     }
+      
+  //   ]
+  // }
 ];
 
 @Injectable()

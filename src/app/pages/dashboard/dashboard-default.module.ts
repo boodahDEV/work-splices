@@ -9,7 +9,7 @@ import { PanelCentralComponent } from './panel-central/panel-central.component';
 import { PanelIzqComponent } from './panel-izq/panel-izq.component';
 import { PanelDerComponent } from './panel-der/panel-der.component';
 import { PanelSurComponent } from './panel-sur/panel-sur.component';
-import { NbActionsModule, NbBadgeModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbListModule, NbRadioModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
+import { NbActionsModule, NbBadgeModule, NbButtonModule, NbCardModule, NbDialogModule, NbIconModule, NbInputModule, NbListModule, NbRadioModule, NbTooltipModule, NbUserModule } from '@nebular/theme';
 
 @NgModule({
   imports: [
@@ -26,6 +26,7 @@ import { NbActionsModule, NbBadgeModule, NbButtonModule, NbCardModule, NbIconMod
     NbUserModule,
     NbInputModule,
     NbRadioModule,
+    NbDialogModule.forChild(),
     NbActionsModule
   ],
   declarations: [DashboardDefaultComponent, PanelCentralComponent, PanelIzqComponent, PanelDerComponent, PanelSurComponent]

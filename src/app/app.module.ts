@@ -17,6 +17,11 @@ import { BasicProjectViewComponent } from './pages/basic-project-view/basic-proj
 import { BasicProjectCommentComponent } from './pages/basic-project-comment/basic-project-comment.component';
 import { BasicUnirmeComponent } from './pages/basic-unirme/basic-unirme.component';
 import { BasicDonateComponent } from './pages/basic-donate/basic-donate.component';
+import { ProyectosComponent } from './pages/proyectos/proyectos.component';
+import { CreateProjectComponent } from './pages/proyectos/create-project/create-project.component';
+import { CreateIdeaComponent } from './pages/proyectos/create-idea/create-idea.component';
+import { IdeasComponent } from './pages/proyectos/ideas/ideas.component';
+import { CreateViewGeneralComponent } from './pages/create-view-general/create-view-general.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,8 @@ import { BasicDonateComponent } from './pages/basic-donate/basic-donate.componen
     BasicProjectViewComponent,
     BasicProjectCommentComponent,
     BasicUnirmeComponent,
-    BasicDonateComponent
+    BasicDonateComponent,
+    CreateViewGeneralComponent
   ],
   imports: [
     BrowserModule,
