@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ApiConnectService } from '../../../../service/api-connect.service';
 import * as bcrypt from 'bcryptjs';
+import { MenuItems } from '../../../../shared/menu-items/menu-items';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class OffialLoginComponent implements OnInit {
   user: any;
   submitted: boolean;
 
-  constructor(private auth: ApiConnectService, public router: Router) {
+  constructor(private auth: ApiConnectService, public router: Router, public menuItems: MenuItems) {
     this.user = {
       email: "",
       password: ""
@@ -40,7 +41,7 @@ export class OffialLoginComponent implements OnInit {
         Swal.fire({
           title: "Inicio correcto",
           text: `Bienvenido ${resp.name} a YEKSPLICES!`,
-          timer: 500,
+          timer: 560,
           icon: "success",
           showConfirmButton: false,
         });
@@ -49,6 +50,9 @@ export class OffialLoginComponent implements OnInit {
           this.router.navigate([`/dashboard/${JSON.parse(sessionStorage.getItem('session-data')).uid
             }`])
         }, 450);
+        setTimeout(() => {
+          window.location.reload()
+        }, 550)
         this.auth.getStudentData(resp.uid).subscribe(respuesta => {
           bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(resp.uid, salt, (err, hash) => {
