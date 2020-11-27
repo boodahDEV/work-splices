@@ -2,52 +2,95 @@
     <div class="col-md-12 col-xl-12 align-self-center">
         <div class="card widget-statstic-card">
             <div class="card-header">
-                <!-- <div class="card-header-left">
-                    <h2>Crear proyecto</h2>
-                </div> -->
-                <div class="row justify-content-between">
-                    <div class="col-6">
-                        <h2>Crear proyecto</h2>
-                    </div>
-                    <div class="col-6 row">
-                        <div class="col-4">
-                            <div class="input-group">
-                                <input type="text" placeholder="Nombre icono" [(ngModel)]="icon_principal" nbInput
-                                    shape="semi-round" name="icon" id="icon" size="11">
-                            </div>
-                        </div>
-                        <div class="col-1"></div>
-                        <div class="col-4">
-                            <nb-select filled status="control" shape="semi-round" placeholder="Color icono:" required
-                                (selectedChange)="getColor($event)" [(selected)]="selectedItem1">
-                                <nb-option value="yellow">Amarillo</nb-option>
-                                <nb-option value="pink">Rosa</nb-option>
-                                <nb-option value="blue">Azul</nb-option>
-                                <nb-option value="green">Verde</nb-option>
-                                <nb-option value="orenge">Naranja</nb-option>
-                                <nb-option value="lite-green">verdecaña</nb-option>
-                                <nb-option> -- </nb-option>
-                            </nb-select>
-                        </div>
-                    </div>
+                <div class="col-11">
+                    <input nbInput fullWidth [(ngModel)]="project_end.titulo" #titulo="ngModel" name="titulo"
+                        type="text" id="input-text" shape="semi-round" placeholder="Titulo del proyecto"
+                        fieldSize="large" [status]="titulo.dirty ? (titulo.invalid  ? 'danger' : 'success') : ''"
+                        [required]=true [minlength]=21 [maxlength]=52 style="font-size: 18px;"
+                        [attr.aria-invalid]="titulo.invalid && titulo.touched ? true : null">
                 </div>
+            </div>
+            <div class="card-block">
+                <i
+                    class="icofont icofont-{{project_end.config.text_icon}} st-icon bg-c-{{project_end.config.color_icon}} txt-lite-color"></i>
                 <div class="row justify-content-center">
-                    <div class="col-9">
-                        <span class="text-muted" style="text-align: center;">Puedes obtener la lista de iconos en <a
-                                target="_blank" href="https://icofont.com/icons" style="cursor: pointer;">IcoFont</a>.
+                    <div class="col-8" style="text-align: center;">
+                        <span class="text-muted">Puedes obtener la lista de
+                            iconos en <a target="_blank" href="https://icofont.com/icons"
+                                style="cursor: pointer;">IcoFont</a>.
                             Recuerda solo copiar el nombre del icono.
                         </span>
                     </div>
                 </div>
-            </div>
-            <div class="card-block">
-                <i class="icofont icofont-{{icon_principal}} st-icon bg-c-{{color_icon}} txt-lite-color"></i>
-                <div class="row ">
+                <br>
+                <div class="row">
+                    <div class="col-5">
+                        <nb-select filled fullWidth status="info" shape="semi-round" placeholder="Equipo responsable: "
+                            required (selectedChange)="getEquipoResponsable($event)">
+                            <nb-option [value]="item" *ngFor="let item of equipos">{{item}}</nb-option>
+                            <nb-option> -- </nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="col-2">
+                        <input type="text" placeholder="Nombre icono" [(ngModel)]="project_end.config.text_icon" nbInput
+                            shape="semi-round" name="icon" id="icon" size="11" status="info">
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-4">
+                        <nb-select filled status="control" shape="semi-round" status="info" placeholder="Color icono:"
+                            required (selectedChange)="getColor($event)">
+                            <nb-option value="yellow">Amarillo</nb-option>
+                            <nb-option value="pink">Rosa</nb-option>
+                            <nb-option value="blue">Azul</nb-option>
+                            <nb-option value="green">Verde</nb-option>
+                            <nb-option value="orenge">Naranja</nb-option>
+                            <nb-option value="lite-green">verdecaña</nb-option>
+                            <nb-option> -- </nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <br>
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <nb-toggle labelPosition="start" [(ngModel)]="project_end.donaciones_ext" status="info">
+                            ¿Donaciones externas? </nb-toggle>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-4">
+                        <nb-toggle labelPosition="start" [(ngModel)]="project_end.commentarios" status="info">
+                            ¿Permitir comentarios? </nb-toggle>
+                    </div>
+                </div>
+                <br>
+                <div class="p-b-15 ">
+                    <div class="row justify-content-center">
+                        <div class="col-7">
+                            <span class="text-muted" style="font-size: 18px;">
+                                Creador:
+                            </span>
+                            <br>
+                            <input nbInput type="text" shape="semi-round" [(ngModel)]="creador_proyecto"
+                                disabled fullWidth name="creador" status="info" id="creador" style="height: 38px;">
+                        </div>
+                        <div class="col-4 ">
+                            <span class="text-muted" style="font-size: 18px;">
+                                Fecha creacion:
+                            </span>
+                            <input nbInput type="text" shape="semi-round" [(ngModel)]="project_end.fecha_creacion"
+                                name="fecha" id="fecha" size="12" disabled style="height: 38px; font-size: 20px;">
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- <div class="row ">
                     <div class="col-12">
-                        <input nbInput fullWidth [(ngModel)]="title" #titulo="ngModel" name="titulo" type="text" nbInput
-                            id="input-text" shape="semi-round" placeholder="Titulo del proyecto" fieldSize="large"
-                            [status]="titulo.dirty ? (titulo.invalid  ? 'danger' : 'success') : ''" [required]=true
-                            [minlength]=21 [maxlength]=52
+                        <input nbInput fullWidth [(ngModel)]="project_end.titulo" #titulo="ngModel" name="titulo"
+                            type="text" nbInput id="input-text" shape="semi-round" placeholder="Titulo del proyecto"
+                            fieldSize="large" [status]="titulo.dirty ? (titulo.invalid  ? 'danger' : 'success') : ''"
+                            [required]=true [minlength]=21 [maxlength]=52 style="font-size: 20px;"
                             [attr.aria-invalid]="titulo.invalid && titulo.touched ? true : null">
 
                         <ng-container *ngIf="titulo.invalid && titulo.touched ">
@@ -65,15 +108,15 @@
                 <br>
                 <div class="row ">
                     <div class="col-12">
-                        <app-card [title]="'Descripcion detallada del proyecto: '" 
-                            [classHeader]="true">
+                        <app-card [title]="'Descripcion detallada del proyecto: '" [classHeader]="true">
                             <span class="code-header">
                                 <span class="text-muted">
                                     Esta funcion esta limitada a SOLO escritura. Pronto las opciones de insertar
                                     Imagenes y Videos junto a la pestaña de Adjuntos.
                                 </span>
                             </span>
-                            <ckeditor [editor]="Editor" [(ngModel)]="descripcion" (ready)="onReady($event)"></ckeditor>
+                            <ckeditor [editor]="Editor" [(ngModel)]="project_end.descripcion" (ready)="onReady($event)">
+                            </ckeditor>
                         </app-card>
                     </div>
                 </div>
@@ -82,11 +125,19 @@
                         <div class="row">
                             <div class="col-12">
                                 <nb-select filled fullWidth status="control" shape="semi-round"
-                                    placeholder="Equipo responsable: " required (selectedChange)="getColor($event)"
-                                    [(selected)]="selectedItem2">
-                                    <nb-option value="yellow">Amarillo</nb-option>
+                                    placeholder="Equipo responsable: " required
+                                    (selectedChange)="getEquipoResponsable($event)">
+                                    <nb-option [value]="item" *ngFor="let item of equipos">{{item}}</nb-option>
                                     <nb-option> -- </nb-option>
                                 </nb-select>
+                                <ng-container *ngIf="project_end.id_equipo_resp == ''">
+                                    <p class="caption status-danger" *ngIf="project_end.id_equipo_resp == ''">
+                                        ¡Seleccionar el equipo responzable del proyecto es necesario!
+                                    </p>
+                                    <p class="caption status-danger" *ngIf="equipos_id.length == 0">
+                                        No perteneces a ningun equipo. Primero crea el equipo para continua.
+                                    </p>
+                                </ng-container>
                             </div>
                         </div>
                         <br>
@@ -96,40 +147,47 @@
                                     <span class="text-muted" style="font-size: 18px;">
                                         Creador:
                                     </span>
-                                    <input nbInput type="text" disabled fullWidth name="creador" id="creador"
-                                        style="height: 38px;">
+                                    <input nbInput type="text" shape="semi-round" [(ngModel)]="project_end.creador_proyecto" disabled fullWidth name="creador" id="creador" style="height: 38px;">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="row">
-                            <div class="col-6">
-                                <nb-toggle labelPosition="start" status="info">¿Donaciones externas? </nb-toggle>
+                            <div class="col-5">
+                                <nb-toggle labelPosition="start" [(ngModel)]="project_end.donaciones_ext" status="info">
+                                    ¿Donaciones externas? </nb-toggle>
                             </div>
-                            <div class="row col-6">
-                                <nb-toggle labelPosition="start" status="info">¿Permitir comentarios? </nb-toggle>
+                            <div class="row col-5">
+                                <nb-toggle labelPosition="start" [(ngModel)]="project_end.commentarios" status="info">
+                                    ¿Permitir comentarios? </nb-toggle>
                             </div>
                         </div>
+                        <br>
                         <div class="row col-12">
-                            <!-- <div class="col-12"> -->
-                                <div class="col-6">
-                                    <span class="text-muted" style="font-size: 18px;">
-                                        Monto inicial:
-                                    </span>
-                                    <input nbInput type="text" name="monto" id="monto" size="5" placeholder="$"
-                                        style="height: 38px; font-size: 20px;">
-                                </div>
-                                <div class="col-6 align-self-center">
-                                    <nb-select filled status="control" shape="semi-round" placeholder="Tipo proyecto: "
-                                        required (selectedChange)="getColor($event)" [(selected)]="selectedItem4">
-                                        <nb-option value="yellow">Investigacion</nb-option>
-                                        <nb-option value="yellow">Pro. Personal</nb-option>
-                                        <nb-option value="yellow">Pro. Educativo</nb-option>
-                                        <nb-option> -- </nb-option>
-                                    </nb-select>
-                                </div>
-                            <!-- </div> -->
+                            <div class="col-6">
+                                <span class="text-muted" style="font-size: 18px;">
+                                    Monto inicial:
+                                </span>
+                                <input nbInput type="text" shape="semi-round" [(ngModel)]="project_end.monto_bruto" name="monto" id="monto" size="5" placeholder="$" minlength="1" maxlength="4" style="height: 38px; font-size: 20px;">
+                            </div>
+                            <div class="col-6 align-self-center">
+                                <span class="text-muted" style="font-size: 18px;">
+                                    Tipo Proyecto:
+                                </span>
+                                <nb-select filled status="control" shape="semi-round" placeholder="Selec. el tipo"
+                                    required (selectedChange)="getTipoProyecto($event)">
+                                    <nb-option value="investigacion">Investigacion</nb-option>
+                                    <nb-option value="personal">Pro. Personales</nb-option>
+                                    <nb-option value="educativo">Pro. Educativo</nb-option>
+                                    <nb-option> -- </nb-option>
+                                </nb-select>
+                                <ng-container *ngIf="project_end.tipo_proyecto == ''">
+                                    <p class="caption status-danger" *ngIf="project_end.tipo_proyecto == ''">
+                                        ¡Seleccionar el tipo de proyecto es necesario!
+                                    </p>
+                                </ng-container>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -150,27 +208,33 @@
                 </div>
                 <div class="row">
                     <div class="col-3">
-                        <nb-toggle labelPosition="start" [(ngModel)]="toggleAsesor" status="info">Profesor asesor
+                        <nb-toggle labelPosition="start" [(ngModel)]="project_end.profesor_asesor" status="info">
+                            Profesor asesor
                         </nb-toggle>
                     </div>
-                    <div class="col-4" *ngIf="toggleAsesor">
-                        <input type="text" fullWidth nbInput shape="semi-round" name="asesor" id="asesor">
+                    <div class="col-4" *ngIf="project_end.profesor_asesor">
+                        <input type="text" fullWidth [(ngModel)]="project_end.nombre_profesor" nbInput
+                            shape="semi-round" name="asesor" id="asesor">
                     </div>
                     <div class="col-5">
                         <span class="text-muted" style="font-size: 18px;">
                             Fecha creacion:
                         </span>
-                        <input nbInput type="text" name="fecha" id="fecha" size="10" disabled
-                            style="height: 38px; font-size: 20px;">
+                        <input nbInput type="text" shape="semi-round" [(ngModel)]="project_end.fecha_creacion" name="fecha" id="fecha"
+                            size="10" disabled style="height: 38px; font-size: 20px;">
                     </div>
+                </div> -->
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-6" style="padding-right: 1px;">
+                    <button nbButton size="large" shape="semi-round" fullWidth status="success"
+                        (click)="save()">Crear</button>
                 </div>
             </div>
-            <div class="row justify-content-end">
-                <div class="col-2">
-                    <button nbButton size="giant" status="control" (click)="save()">Cancelar</button>
-                </div>
-                <div class="col-2">
-                    <button nbButton size="giant" status="control" (click)="save()">Crear</button>
+            <div class="row justify-content-center">
+                <div class="col-2" style="padding-right: 1px;">
+                    <button nbButton size="medium" shape="semi-round" fullWidth status="control"
+                        (click)="exit_dialog()">Cancelar</button>
                 </div>
             </div>
             <br>
