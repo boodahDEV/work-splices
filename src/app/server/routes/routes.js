@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const router = new Router();
 const database = require('../config/database')
+const { v4: uuidv4 } = require('uuid');
 
 
 router.post("/register", async (req, res) => {
@@ -35,6 +36,7 @@ router.post("/register", async (req, res) => {
       comentarios: new Array(),
       proyectos: new Array(),
       donaciones: new Array(),
+      configuraciones: new Array(),
       indice,
       num_recibo,
       is_validate: false,
@@ -90,20 +92,105 @@ router.get('/faculty', (req, res) => { // ESTA URL RETORNA TODAS LAS FACULTADES 
   database.firestore.collection('FACULTAD').get().then(respuesta => {
     var objeto = []
     respuesta.forEach(i => {
-      i.data()
       objeto.push([i.id, i.data().nombre_facultad, i.data().limite_fondos])
     })
     console.log("[\x1b[32m Get data from '/FACULTAD'\x1b[0m] -> \x1b[44mdata extracted\x1b[0m -> \x1b[33mSuccessfully\x1b[0m.");
     res.send(objeto)
+  }).catch(err => {
+    res.status(200).send({
+      status: "error",
+      info: err.message
+    })
   })
 })
 
-router.post("/projects/:id", async (req, res) => { // ESTA URL ES PARA TRAER proyectos en especifico
+router.get("/projects/:id", async (req, res) => { // ESTA URL ES PARA TRAER proyectos en especifico
+  // AQUI ES PARA CARGAR A LA BASE DE DATOS UN BUFFER DE PRODUCTOS.
+  let datos = {}
+  database.firestore.collection('PROYECTO').doc(req.params.id).get().then(resp => {
+    console.log(`[\x1b[32m Get data from ['${req.params.id}']\x1b[0m] -> \x1b[44mdata extracted\x1b[0m -> \x1b[33mSuccessfully\x1b[0m.`);
+    datos = resp.data()
+    res.status(200).send(datos)
+  }).catch(err => {
+    res.status(200).send({
+      status: "error",
+      info: err.message
+    })
+  })
+})
+
+router.get("/projects/", async (req, res) => { // ESTA URL ES PARA TRAER todos los proyectos
+  database.firestore.collection('PROYECTO').get().then(resp => {
+    console.log(`[\x1b[32m Get data from '/PROYECTO'\x1b[0m] -> \x1b[44mdata extracted\x1b[0m -> \x1b[33mSuccessfully\x1b[0m.`);
+    var objeto = []
+    resp.forEach(i => {
+      objeto.push([i.id, i.data()])
+    })
+    res.status(200).send(objeto)
+  }).catch(err => {
+    res.status(200).send({
+      status: "error",
+      info: err.message
+    })
+  })
+})
+
+router.post("/projects", async (req, res) => {
+  let uid = "PRO-"+ uuidv4();
+  database.firestore.collection('PROYECTO').doc(""+uid).set(req.body).then(resp => {
+    console.log(`[\x1b[32m Create PROJECT by [${req.body.id_creador}]\x1b[0m] -> \x1b[44mdata create on firestore!\x1b[0m -> \x1b[33mSuccessfully\x1b[0m.`);
+    res.status(200).send({
+      status: "ok",
+      info: "El proyecto fue creador con exito!",
+      uid: uid
+    })
+  }).catch(err => {
+    res.status(200).send({
+      status: "error",
+      info: err.message
+    })
+  })
 
 })
-router.post("/projects", async (req, res) => { // ESTA URL ES PARA TRAER TODOS LOS proyectos ALMACENADOS
 
+router.put("/user-info/:id", async (req, res) => {
+  database.firestore.collection('ESTUDIANTES').doc(req.params.id).update(req.body).then(resp => {
+    console.log(`[\x1b[32m Update data to user [${req.params.id}]\x1b[0m] -> \x1b[44mdata update\x1b[0m -> \x1b[33mSuccessfully\x1b[0m.`);
+    res.status(200).send({
+      status: "ok",
+      info: "Tus datos fueron actualizados con exito!"
+    })
+  }).catch(err => {
+    res.status(200).send({
+      status: "error",
+      info: err.message
+    })
+  })
 })
+
+router.post("/teams", async (req, res) => { // ESTA URL ES PARA TRAER TODOS LOS proyectos ALMACENADOS
+
+  database.firestore.collection('EQUIPO').get().then(resp => {
+    var objeto = []
+    resp.forEach(x => {
+      objeto.push([x.id, x.data().nombre,
+      x.data().ideas,
+      x.data().proyectos,
+      x.data().integrantes,
+      x.data().id_lider_equipo,
+      x.data().fecha_creacion
+      ])
+    })
+    console.log(`[\x1b[32m Get all data from EQUIPOS\x1b[0m] -> \x1b[44mdata extracted\x1b[0m -> \x1b[33mSuccessfully\x1b[0m.`);
+    res.status(200).send(objeto)
+  }).catch(err => {
+    res.status(200).send({
+      status: "error",
+      info: err.message
+    })
+  })
+})
+
 router.post("/idea/:id", async (req, res) => { // ESTA URL ES PARA TRAER ideas en especifico
 
 })
@@ -119,7 +206,7 @@ router.get("/user-info/:id", (req, res) => {
   // AQUI ES PARA CARGAR A LA BASE DE DATOS UN BUFFER DE PRODUCTOS.
   let datos = {}
   database.firestore.collection('ESTUDIANTES').doc(req.params.id).get().then(resp => {
-    console.log(`[\x1b[32m Get data from '${req.params.id}'\x1b[0m] -> \x1b[44mdata extracted\x1b[0m -> \x1b[33mSuccessfully\x1b[0m.`);
+    console.log(`[\x1b[32m Get data from ['${req.params.id}']\x1b[0m] -> \x1b[44mdata extracted\x1b[0m -> \x1b[33mSuccessfully\x1b[0m.`);
     datos = resp.data()
     res.status(200).send(datos)
   }).catch(err => {
