@@ -27,6 +27,26 @@ export class ApiConnectService {
     return this.http.get<any>(this.URL + `/user-info/${uid}`);
   }
 
+  UpdateStudentData(uid,data){
+    return this.http.put<any>(this.URL + `/user-info/${uid}`,data);
+  }
+  
+  getAllProjectData(){
+    return this.http.get<any>(this.URL + `/projects/`);
+  }
+
+  getProjectData(uid){
+    return this.http.get<any>(this.URL + `/projects/${uid}`);
+  }
+
+  createProject(data) {
+    return this.http.post<any>(this.URL + `/projects`, data);
+  }
+
+  getTeamsData(uid){
+    return this.http.post<any>(this.URL + `/teams`,uid);
+  }
+
   logger(): Boolean {
     if(!!sessionStorage.getItem("session-data") && JSON.parse(sessionStorage.getItem('session-data')).role === 'Administrador'){
       return true

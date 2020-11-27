@@ -176,7 +176,33 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.setBackgroundPattern('pattern2');
     console.log(this.uid)
+
     this.menuItems.getAll().forEach(x => {
+      if(sessionStorage.getItem("session-data")){
+        x.main.push({
+          state: 'user/:id/:id/dashboard',
+          name: 'Mi centro de control',
+          type: 'link',
+          icon: 'ti-harddrives'
+        }, {
+          state: "project/:id/:id/dashboard",
+          name: 'Mis Proyectos',
+          type: 'link',
+          icon: 'ti-briefcase'
+        },
+          {
+            state: 'project/:id/:id/ideas',
+            name: 'Mis Ideas',
+            type: 'link',
+            icon: 'ti-light-bulb'
+          },
+          {
+            state: 'user/:id/:id/teams',
+            name: ' Getion de Equipos',
+            type: 'link',
+            icon: 'ti-flag-alt-2'
+          })  
+      }
       x.main.forEach(ob => {
         let separate = ob.state.split(":id")
         let final_concat = ""
@@ -276,7 +302,7 @@ export class AdminComponent implements OnInit {
                   sessionStorage.removeItem(key);
                 }
               }
-              this.router.navigate([`dashboard`])
+              this.router.navigate([`/dashboard`])
               // window.location.reload()
             }, 320);
             setTimeout(() => {

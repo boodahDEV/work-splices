@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 export interface BadgeItem {
   type: string;
@@ -35,41 +35,42 @@ const MENUITEMS = [
     label: 'Navigacion',
     main: [
       {
-        state: 'user/:id/:id/dashboard',
-        name: 'Mi centro de control',
-        type: 'link',
-        icon: 'ti-harddrives'
-      },
-      {
         state: 'dashboard/:id',
         name: 'Explorar',
         type: 'link',
         icon: 'ti-home'
       },
-      {
-        state: "project/:id/:id/dashboard",
-        name: 'Proyectos',
-        type: 'link',
-        icon: 'ti-briefcase'
-      },
-      {
-        state: 'project/:id/:id/ideas',
-        name: 'Ideas',
-        type: 'link',
-        icon: 'ti-light-bulb'
-      },
-      {
-        state: 'user/:id/:id/teams',
-        name: 'Equipos',
-        type: 'link',
-        icon: 'ti-flag-alt-2'
-      },
-      {
-        state: 'user/:id/:id/peoples',
-         name: 'Personas',
-        type: 'link',
-        icon: 'ti-user'
-      }
+      // {
+      //   state: 'user/:id/:id/dashboard',
+      //   name: 'Mi centro de control',
+      //   type: 'link',
+      //   icon: 'ti-harddrives'
+      // },
+
+      // {
+      //   state: "project/:id/:id/dashboard",
+      //   name: 'Proyectos',
+      //   type: 'link',
+      //   icon: 'ti-briefcase'
+      // },
+      // {
+      //   state: 'project/:id/:id/ideas',
+      //   name: 'Ideas',
+      //   type: 'link',
+      //   icon: 'ti-light-bulb'
+      // },
+      // {
+      //   state: 'user/:id/:id/teams',
+      //   name: 'Equipos',
+      //   type: 'link',
+      //   icon: 'ti-flag-alt-2'
+      // },
+      // {
+      //   state: 'user/:id/:id/peoples',
+      //   name: 'Personas',
+      //   type: 'link',
+      //   icon: 'ti-user'
+      // }
     ],
   }
   // {
@@ -122,7 +123,7 @@ const MENUITEMS = [
   //       type: 'link',
   //       icon: 'ti-receipt'
   //     }
-      
+
   //   ]
   // }
 ];

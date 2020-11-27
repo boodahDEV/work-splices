@@ -1,11 +1,11 @@
 {
   "name": "yeksplices",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "license": "Apache 2.0",
   "scripts": {
     "start": "ng serve",
     "serve": "pm2 start src/app/server/index.js",
-    "serve-stop": "pm2 stop src/app/server/index.js"
+    "serve-r": "pm2 restart src/app/server/index.js"
   },
   "private": true,
   "dependencies": {
@@ -57,6 +57,7 @@
     "sweetalert2": "^10.10.1",
     "ti-icons": "^0.1.2",
     "tslib": "^2.0.0",
+    "uuid": "^8.3.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
