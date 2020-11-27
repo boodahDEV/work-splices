@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./make-team.component.scss']
 })
 export class MakeTeamComponent implements OnInit {
-
-  constructor() { }
+  people = { name: String, title: String } [10] = [
+  ];
+  constructor() {
+    
+   }
 
   ngOnInit(): void {
+  }
+
+  getUser(value:any){
+    if(this.people.length < 3)
+      this.people.push({ name: 'boodah', title: 'Nurse' })
   }
 
 }

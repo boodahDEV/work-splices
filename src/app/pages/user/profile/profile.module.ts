@@ -11,7 +11,7 @@ import { BasicDasboardUserComponent } from '../basic-dasboard-user/basic-dasboar
 import { MakeTeamComponent } from '../make-team/make-team.component';
 import { PeoplesComponent } from '../peoples/peoples.component';
 import { TeamsComponent } from '../teams/teams.component';
-import { NbButtonModule, NbCardModule, NbDialogModule, NbIconModule, NbInputModule, NbSelectModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbDialogModule, NbIconModule, NbInputModule, NbListModule, NbSelectModule, NbUserModule } from '@nebular/theme';
 
 @NgModule({
   imports: [
@@ -21,6 +21,8 @@ import { NbButtonModule, NbCardModule, NbDialogModule, NbIconModule, NbInputModu
     FormsModule,
     NbButtonModule,
     NbCardModule,
+    NbUserModule,
+    NbListModule,
     NbIconModule,
     NbSelectModule,
     NbInputModule,

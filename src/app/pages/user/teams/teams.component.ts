@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+import { MakeTeamComponent } from '../make-team/make-team.component';
 
 @Component({
   selector: 'app-teams',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogService: NbDialogService) { }
 
   ngOnInit(): void {
+  }
+
+  open(){
+    this.dialogService.open(MakeTeamComponent, {closeOnBackdropClick:false,closeOnEsc:true});
   }
 
 }

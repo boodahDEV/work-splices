@@ -1,1 +1,74 @@
-<p>make-team works!</p>
+<div class="col-md-12 col-xl-12">
+    <div class="card card-contact-box ">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <h2>Crear equipo</h2>
+                </div>
+                <div class="col-6">
+                    <input type="text" name="name" placeholder="Nombre de equipo" id="name" nbInput shape="semi-round"
+                        size="medium" fullWidth>
+                </div>
+            </div>
+        </div>
+        <div class="card-block ">
+            <div class="card-contain">
+                <div class="row">
+                    <!-- LADO IZQUIERDO -->
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <input nbInput type="text" shape="semi-round" placeholder="Lider de equipo" fullWidth
+                                    name="lider" id="lider" size="11">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <nb-select filled status="control" shape="semi-round" fullWidth
+                                    placeholder="Selec. el tipo" required (selectedChange)="getUser($event)">
+                                    <nb-option value="investigacion">Investigacion</nb-option>
+                                    <nb-option value="personal">Pro. Personales</nb-option>
+                                    <nb-option value="educativo">Pro. Educativo</nb-option>
+                                    <nb-option> -- </nb-option>
+                                </nb-select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- LADO IZQUIERDO -->
+
+                    <!-- LADO DERECHO -->
+                    <div class="col-6">
+                        <div class="row">
+                            <nb-list nbInfiniteList>
+                                <nb-list-item *ngFor="let user of people">
+                                    <nb-user style="cursor: pointer" size="small" [name]="user.name">
+                                    </nb-user>
+                                </nb-list-item>
+                            </nb-list>
+                        </div>
+                    </div>
+                    <!-- LADO DERECHO -->
+
+                </div>
+            </div>
+        </div>
+        <div class="b-t-default">
+            <div class="row m-0">
+                <div class="col-6 p-t-15 p-b-15 ">
+                    <span class="text-muted" style="font-size: 18px;">
+                        Monto:
+                    </span>
+                    <input nbInput type="text" status="primary" name="monto" id="monto" size="2" placeholder="$"
+                        style="height: 28px;">
+                </div>
+                <div class="col-6 f-btn text-center p-t-15 p-b-15 ">
+                    <a href="javascript:">
+                        <i class="icofont icofont-user text-muted m-r-10 "></i>
+                        <p class="text-muted m-0 text-uppercase d-inline-block ">Unirme</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
